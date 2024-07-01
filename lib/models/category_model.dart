@@ -1,8 +1,7 @@
 class CategoryModel {
-  late int id;
-  late String name;
+  late String id, name;
 
-  CategoryModel(int id, String name) {
+  CategoryModel(String id, name) {
     this.id = id;
     this.name = name;
   }

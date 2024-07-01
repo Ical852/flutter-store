@@ -1,12 +1,12 @@
 import 'package:flutterstore/models/category_model.dart';
 
 class ProductModel {
-  late int id, weight, width, length, height;
+  late int weight, width, length, height;
   late CategoryModel category;
-  late String sku, name, desc, image, price;
+  late String id, sku, name, desc, image, price;
 
-  ProductModel(int id, weight, width, length, height, CategoryModel category,
-      String sku, name, desc, image, price) {
+  ProductModel(int  weight, width, length, height, CategoryModel category,
+      String id, sku, name, desc, image, price) {
     this.id = id;
     this.weight = weight;
     this.width = width;
@@ -27,7 +27,7 @@ class ProductModel {
       "width": this.width,
       "length": this.length,
       "height": this.height,
-      "category": this.category,
+      "category": this.category.toJson(),
       "sku": this.sku,
       "name": this.name,
       "desc": this.desc,

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutterstore/blocs/cubits/category_cubit.dart';
 import 'package:flutterstore/blocs/cubits/product_cubit.dart';
+import 'package:flutterstore/screens/add_pages/add_category_page.dart';
+import 'package:flutterstore/screens/add_pages/add_product_page.dart';
 import 'package:flutterstore/screens/main_pages/home.dart';
 
 void main() {
@@ -22,8 +24,8 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         routes: {
           "/": (context) => HomePage(),
-          "/add": (context) => HomePage(),
-          "/add-category": (context) => HomePage(),
+          "/add-category": (context) => AddCategoryPage(),
+          "/add-product": (context) => AddProductPage(),
         },
         initialRoute: "/",
         onGenerateRoute: (settings) {
