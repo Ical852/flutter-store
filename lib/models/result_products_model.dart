@@ -4,6 +4,11 @@ class ResultProductsModel {
   late List<PageNProduct> products;
   late List<int> pages;
 
+  ResultProductsModel.init() {
+    this.products = [];
+    this.pages = [];
+  }
+
   ResultProductsModel(List<PageNProduct> products, List<int> pages) {
     this.products = products;
     this.pages = pages;

@@ -1,18 +1,18 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutterstore/models/pagination_model.dart';
+import 'package:flutterstore/models/product_bloc_model.dart';
 import 'package:flutterstore/models/product_model.dart';
 import 'package:flutterstore/models/result_products_model.dart';
 
 part '../states/product_state.dart';
 
-class ProductCubit extends Cubit<PaginationModel> {
-  ProductCubit() : super(PaginationModel.init());
+class ProductCubit extends Cubit<ProductBlocModel> {
+  ProductCubit() : super(ProductBlocModel.init());
 
   bool submitFilter(String filter) {
     try {
       var newState = state;
-      newState.filter = filter;
+      newState.pagination.filter = filter;
       emit(newState);
       return true;
     } catch (e) {
@@ -23,7 +23,7 @@ class ProductCubit extends Cubit<PaginationModel> {
   bool changePage(int page) {
     try {
       var newState = state;
-      newState.page = page;
+      newState.pagination.page = page;
       emit(newState);
       return true;
     } catch (e) {
@@ -34,7 +34,7 @@ class ProductCubit extends Cubit<PaginationModel> {
   bool changeLimit(int limit) {
     try {
       var newState = state;
-      newState.limit = limit;
+      newState.pagination.limit = limit;
       emit(newState);
       return true;
     } catch (e) {
@@ -45,7 +45,7 @@ class ProductCubit extends Cubit<PaginationModel> {
   bool submitProduct(ProductModel product) {
     try {
       var newState = state;
-      newState.products.add(product);
+      newState.pagination.products.add(product);
       emit(newState);
       return true;
     } catch (e) {
@@ -56,10 +56,10 @@ class ProductCubit extends Cubit<PaginationModel> {
   bool editProduct(ProductModel product, String id) {
     try {
       var newState = state;
-      int index = newState.products.indexWhere((product) => product.id == id);
+      int index = newState.pagination.products.indexWhere((product) => product.id == id);
 
       if (index != -1) {
-        newState.products[index] = product;
+        newState.pagination.products[index] = product;
         emit(newState);
         return true;
       }
@@ -72,7 +72,7 @@ class ProductCubit extends Cubit<PaginationModel> {
   bool deleteProduct(String id) {
     try {
       var newState = state;
-      newState.products.removeWhere((product) => product.id == id);
+      newState.pagination.products.removeWhere((product) => product.id == id);
       emit(newState);
       return true;
     } catch (e) {
@@ -80,12 +80,15 @@ class ProductCubit extends Cubit<PaginationModel> {
     }
   }
 
-  ResultProductsModel? getProducts() {
+  bool refreshProducts() {
     try {
-      var limit = state.limit;
-      var page = state.page;
-      var filter = state.filter;
-      var products = state.products;
+      var pagination = state.pagination;
+      var newState = state;
+
+      var limit = pagination.limit;
+      var page = pagination.page;
+      var filter = pagination.filter;
+      var products = pagination.products;
 
       if (filter.isNotEmpty) {
         products =
@@ -109,9 +112,13 @@ class ProductCubit extends Cubit<PaginationModel> {
         }
       }
 
-      return ResultProductsModel(resProducts, pages);
+      ResultProductsModel results = ResultProductsModel(resProducts, pages);
+      newState.resultProduct = results;
+      emit(newState);
+
+      return true;
     } catch (e) {
-      return null;
+      return false;
     }
   }
 }

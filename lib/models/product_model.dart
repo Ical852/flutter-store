@@ -5,8 +5,11 @@ class ProductModel {
   late CategoryModel category;
   late String id, sku, name, desc, image, price;
 
-  ProductModel(int  weight, width, length, height, CategoryModel category,
-      String id, sku, name, desc, image, price) {
+  ProductModel(
+    int  weight, width, length, height,
+    CategoryModel category,
+    String id, sku, name, desc, image, price
+  ) {
     this.id = id;
     this.weight = weight;
     this.width = width;
