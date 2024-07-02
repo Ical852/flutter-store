@@ -1,6 +1,11 @@
 class CategoryModel {
   late String id, name;
 
+  CategoryModel.init() {
+    this.id = "";
+    this.name = "";
+  }
+
   CategoryModel(String id, name) {
     this.id = id;
     this.name = name;

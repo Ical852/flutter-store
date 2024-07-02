@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutterstore/models/category_model.dart';
 import 'package:flutterstore/models/product_bloc_model.dart';
 import 'package:flutterstore/models/product_model.dart';
 import 'package:flutterstore/models/result_products_model.dart';
@@ -13,6 +14,17 @@ class ProductCubit extends Cubit<ProductBlocModel> {
     try {
       var newState = state;
       newState.pagination.filter = filter;
+      emit(newState);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  bool changeCategory(CategoryModel category) {
+    try {
+      var newState = state;
+      newState.pagination.categoryFilter = category;
       emit(newState);
       return true;
     } catch (e) {
@@ -88,11 +100,15 @@ class ProductCubit extends Cubit<ProductBlocModel> {
       var limit = pagination.limit;
       var page = pagination.page;
       var filter = pagination.filter;
+      var categoryFilter = pagination.categoryFilter;
       var products = pagination.products;
 
+      if (categoryFilter.id.isNotEmpty) {
+        products = products.where((product) => product.category.id == categoryFilter.id).toList();
+      }
+
       if (filter.isNotEmpty) {
-        products =
-            products.where((product) => product.name.contains(filter)).toList();
+        products = products.where((product) => product.name.contains(filter)).toList();
       }
 
       List<int> pages = [];

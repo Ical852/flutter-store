@@ -10,6 +10,11 @@ class ProductBlocModel {
     this.resultProduct = ResultProductsModel.init();
   }
 
+  ProductBlocModel(PaginationModel pagination, ResultProductsModel resultProduct) {
+    this.pagination = pagination;
+    this.resultProduct = resultProduct;
+  }
+
   Map<String, dynamic> toJson() {
     return {
       "pagination": this.pagination.toJson(),

@@ -4,6 +4,7 @@ import 'package:flutterstore/models/product_model.dart';
 import 'package:flutterstore/shared/constants.dart';
 import 'package:flutterstore/shared/text_styles.dart';
 import 'package:uuid/uuid.dart';
+import 'package:intl/intl.dart' as intl;
 
 dynamic nullChecker(dynamic check) {
   if (check == null) return null;
@@ -22,20 +23,6 @@ Color getColorType(type) {
   } else {
     return successColor;
   }
-}
-
-void showGLobalAlert(type, text, context) {
-  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-    duration: Duration(seconds: 2),
-    content: Text(
-      text,
-      style: regular.white.bold,
-      textAlign: TextAlign.center,
-    ),
-    backgroundColor: getColorType(type),
-    shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(8))),
-  ));
 }
 
 double getWH(BuildContext context, String type) {
@@ -78,4 +65,66 @@ String generateProductId(List<ProductModel> products) {
     return generated;
   }
   return generateProductId(products);
+}
+
+String rawMoneyFormat(int number) {
+  var formatted = intl.NumberFormat.decimalPattern().format(number);
+
+  return formatted.replaceAll(',', '.');
+}
+
+String moneyFormat(int number) {
+  var formatted = intl.NumberFormat.decimalPattern().format(number);
+
+  return 'IDR. ' + formatted.replaceAll(',', '.');
+}
+
+double screenWidthPercentage(context, double percentage) {
+  return MediaQuery.of(context).size.width * percentage;
+}
+
+double screenHeightPercentage(context, double percentage) {
+  return MediaQuery.of(context).size.height * percentage;
+}
+
+void showGLobalAlert(type, text, context) {
+  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    duration: Duration(seconds: 2),
+    content: Text(
+      text,
+      style: regular.white.bold,
+      textAlign: TextAlign.center,
+    ),
+    backgroundColor: getColorType(type),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(
+        top: Radius.circular(8)
+      )
+    ),
+  ));
+}
+
+void showDrawer(BuildContext context, double height, Widget content) {
+  showModalBottomSheet<void>(
+    context: context,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(32), 
+        topRight: Radius.circular(32)
+      )
+    ),
+    builder: (BuildContext context) {
+      return Container(
+        height: height ,
+        decoration: BoxDecoration(
+          color: whiteColor,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(32),
+            topRight: Radius.circular(32)
+          )
+        ),
+        child: content,
+      );
+    },
+  );
 }
