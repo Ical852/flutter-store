@@ -111,9 +111,31 @@ class ProductCubit extends Cubit<ProductBlocModel> {
         products = products.where((product) => product.name.contains(filter)).toList();
       }
 
-      List<int> pages = [];
+      List<dynamic> pages = [];
       for (int i = 1; i <= (products.length / limit).round(); i++) {
         pages.add(i);
+      }
+
+      List<dynamic> formatPages = [];
+      if (pages.length > 5) {
+        if (page <= 2) {
+          var set = [1, 2, 3, 4];
+          formatPages.addAll(set);
+          formatPages.add("...");
+          pages = formatPages;
+        } else if (page >= pages[pages.length - 2]) {
+          var max = pages.length;
+          var set = [max - 3, max - 2, max - 1, max];
+          formatPages.add("...");
+          formatPages.addAll(set);
+          pages = formatPages;
+        } else {
+          var set = [page - 1, page, page + 1];
+          formatPages.add("...");
+          formatPages.addAll(set);
+          formatPages.add("...");
+          pages = formatPages;
+        }
       }
 
       List<PageNProduct> resProducts = [];

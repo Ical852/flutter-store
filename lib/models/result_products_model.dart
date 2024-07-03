@@ -2,14 +2,14 @@ import 'package:flutterstore/models/product_model.dart';
 
 class ResultProductsModel {
   late List<PageNProduct> products;
-  late List<int> pages;
+  late List<dynamic> pages;
 
   ResultProductsModel.init() {
     this.products = [];
     this.pages = [];
   }
 
-  ResultProductsModel(List<PageNProduct> products, List<int> pages) {
+  ResultProductsModel(List<PageNProduct> products, List<dynamic> pages) {
     this.products = products;
     this.pages = pages;
   }
