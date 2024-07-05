@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutterstore/blocs/cubits/category_cubit.dart';
 import 'package:flutterstore/blocs/cubits/product_cubit.dart';
 import 'package:flutterstore/screens/add_pages/add_category_page.dart';
 import 'package:flutterstore/screens/add_pages/add_product_page.dart';
-import 'package:flutterstore/screens/main_pages/home.dart';
 import 'package:flutterstore/screens/search_pages/search_page.dart';
+import 'package:flutterstore/screens/splash_page.dart';
+import 'package:flutterstore/shared/constants.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,6 +18,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarColor: green1));
+
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => ProductCubit()),
@@ -24,7 +29,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         routes: {
-          "/": (context) => HomePage(),
+          "/": (context) => SplashPage(),
           "/add-category": (context) => AddCategoryPage(),
           "/add-product": (context) => AddProductPage(),
           "/search": (context) => SearchPage()

@@ -41,9 +41,8 @@ String generateCategoryId(List<CategoryModel> categories) {
   var uuid = Uuid();
   var generated = uuid.v1();
   CategoryModel find = categories.firstWhere(
-    (category) => category.id == generated,
-    orElse: () => CategoryModel("", "")
-  );
+      (category) => category.id == generated,
+      orElse: () => CategoryModel.init());
 
   if (find.id.isEmpty) {
     return generated;
@@ -54,12 +53,8 @@ String generateCategoryId(List<CategoryModel> categories) {
 String generateProductId(List<ProductModel> products) {
   var uuid = Uuid();
   var generated = uuid.v1();
-  ProductModel find = products.firstWhere(
-    (product) => product.id == generated,
-    orElse: () => ProductModel(
-      0, 0, 0, 0,  CategoryModel("", ""), "", "", "", "", "", ""
-    )
-  );
+  ProductModel find = products.firstWhere((product) => product.id == generated,
+      orElse: () => ProductModel.init());
 
   if (find.id.isEmpty) {
     return generated;
@@ -87,6 +82,18 @@ double screenHeightPercentage(context, double percentage) {
   return MediaQuery.of(context).size.height * percentage;
 }
 
+String getIC(String icon) {
+  return "assets/icons/$icon";
+}
+
+String getIL(String illustration) {
+  return "assets/illustrations/$illustration";
+}
+
+String getIM(String image) {
+  return "assets/images/$image";
+}
+
 void showGLobalAlert(type, text, context) {
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
     duration: Duration(seconds: 2),
@@ -97,10 +104,7 @@ void showGLobalAlert(type, text, context) {
     ),
     backgroundColor: getColorType(type),
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(
-        top: Radius.circular(8)
-      )
-    ),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(8))),
   ));
 }
 
@@ -108,21 +112,15 @@ void showDrawer(BuildContext context, double height, Widget content) {
   showModalBottomSheet<void>(
     context: context,
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(32), 
-        topRight: Radius.circular(32)
-      )
-    ),
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(32), topRight: Radius.circular(32))),
     builder: (BuildContext context) {
       return Container(
-        height: height ,
+        height: height,
         decoration: BoxDecoration(
-          color: whiteColor,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(32),
-            topRight: Radius.circular(32)
-          )
-        ),
+            color: whiteColor,
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(32), topRight: Radius.circular(32))),
         child: content,
       );
     },
