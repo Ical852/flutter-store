@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterstore/widgets/add/price_items/price_item.dart';
+import 'package:flutterstore/widgets/screens/add/price_items/price_item.dart';
 
 // ignore: must_be_immutable
 class RowPriceItem extends StatelessWidget {

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutterstore/models/category_model.dart';
 import 'package:flutterstore/models/product_model.dart';
@@ -5,6 +7,7 @@ import 'package:flutterstore/shared/constants.dart';
 import 'package:flutterstore/shared/text_styles.dart';
 import 'package:uuid/uuid.dart';
 import 'package:intl/intl.dart' as intl;
+import 'package:image_picker/image_picker.dart';
 
 dynamic nullChecker(dynamic check) {
   if (check == null) return null;
@@ -92,6 +95,19 @@ String getIL(String illustration) {
 
 String getIM(String image) {
   return "assets/images/$image";
+}
+
+Future<File?> pickImage(ImageSource source) async {
+  try {
+    XFile? image = await ImagePicker().pickImage(source: source);
+    if (image == null) {
+      return null;
+    }
+    File img = File(image.path);
+    return img;
+  } catch (e) {
+    return null;
+  }
 }
 
 void showGLobalAlert(type, text, context) {

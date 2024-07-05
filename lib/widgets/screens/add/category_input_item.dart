@@ -1,6 +1,6 @@
 import 'package:flutterstore/shared/constants.dart';
 import 'package:flutterstore/shared/text_styles.dart';
-import 'package:flutterstore/widgets/add/circle_indicator.dart';
+import 'package:flutterstore/widgets/screens/add/circle_indicator.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
