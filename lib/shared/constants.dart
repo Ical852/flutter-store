@@ -7,6 +7,7 @@ double mediumSize = 16;
 double baseSize = 18;
 double megaSize = 20;
 double extraSize = 24;
+double massSize = 32;
 
 Color blackColor = Color(0xff000000);
 Color black1 = Color(0xff14491C);

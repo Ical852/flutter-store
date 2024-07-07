@@ -22,3 +22,4 @@ TextStyle medium = TextStyle(fontSize: mediumSize);
 TextStyle base = TextStyle(fontSize: baseSize);
 TextStyle mega = TextStyle(fontSize: megaSize);
 TextStyle extra = TextStyle(fontSize: extraSize);
+TextStyle mass = TextStyle(fontSize: massSize);
