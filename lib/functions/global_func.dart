@@ -1,9 +1,12 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutterstore/models/category_model.dart';
+import 'package:flutterstore/models/product_bloc_model.dart';
 import 'package:flutterstore/models/product_model.dart';
 import 'package:flutterstore/shared/constants.dart';
+import 'package:flutterstore/shared/dummies.dart';
 import 'package:flutterstore/shared/text_styles.dart';
 import 'package:uuid/uuid.dart';
 import 'package:intl/intl.dart' as intl;
@@ -141,4 +144,52 @@ void showDrawer(BuildContext context, double height, Widget content) {
       );
     },
   );
+}
+
+ProductBlocModel generateDummy() {
+  Random random = Random();
+  String generateRandomString(int length) {
+    const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+    return List.generate(length, (index) => chars[random.nextInt(chars.length)]).join();
+  }
+
+  List<String> categoryNames = [
+    "Shirt", "Pants", "Jacket", "Sweater", "Hat", "Boxers", 
+    "Underwear", "Outer", "Inner", "Shoes"
+  ];
+  List<CategoryModel> categories = List.generate(categoryNames.length, (index) {
+    return CategoryModel(
+      "", categoryNames[index]
+    );
+  });
+  for (CategoryModel category in categories) {
+    category.id = generateCategoryId(categories);
+  }
+
+  List<ProductModel> products = List.generate(100, (index) {
+    int categoryIndex = random.nextInt(categories.length);
+    CategoryModel category = categories[categoryIndex];
+
+    return ProductModel(
+      random.nextInt(1000) + 1,
+      random.nextInt(1000) + 1,
+      random.nextInt(1000) + 1,
+      random.nextInt(1000) + 1,
+      category,
+      "",
+      generateRandomString(10),
+      generateRandomString(24),
+      generateRandomString(100),
+      imgDummies[index],
+      random.nextInt(1000000) + 100
+    );
+  });
+  for (ProductModel product in products) {
+    product.id = generateProductId(products);
+  }
+
+  var productBloc = ProductBlocModel.init();
+  productBloc.pagination.products = products;
+
+  return productBloc;
 }

@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutterstore/functions/global_func.dart';
 import 'package:flutterstore/models/category_model.dart';
 import 'package:flutterstore/models/product_bloc_model.dart';
 import 'package:flutterstore/models/product_model.dart';
@@ -8,7 +9,7 @@ import 'package:flutterstore/models/result_products_model.dart';
 part '../states/product_state.dart';
 
 class ProductCubit extends Cubit<ProductBlocModel> {
-  ProductCubit() : super(ProductBlocModel.init());
+  ProductCubit() : super(generateDummy());
 
   bool submitFilter(String filter) {
     try {
