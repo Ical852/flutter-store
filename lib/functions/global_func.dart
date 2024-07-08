@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutterstore/models/category_bloc_model.dart';
 import 'package:flutterstore/models/category_model.dart';
 import 'package:flutterstore/models/product_bloc_model.dart';
 import 'package:flutterstore/models/product_model.dart';
@@ -113,6 +114,13 @@ Future<File?> pickImage(ImageSource source) async {
   }
 }
 
+BoxShadow getBoxShadow(double show) {
+  return BoxShadow(
+      color: blackColor.withOpacity(show / 10),
+      blurRadius: show,
+      offset: Offset(0, show));
+}
+
 void showGLobalAlert(type, text, context) {
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
     duration: Duration(seconds: 2),
@@ -146,14 +154,7 @@ void showDrawer(BuildContext context, double height, Widget content) {
   );
 }
 
-ProductBlocModel generateDummy() {
-  Random random = Random();
-  String generateRandomString(int length) {
-    const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
-    return List.generate(length, (index) => chars[random.nextInt(chars.length)])
-        .join();
-  }
-
+CategoryBlocModel generateCategory() {
   List<String> categoryNames = [
     "Shirt",
     "Pants",
@@ -172,6 +173,26 @@ ProductBlocModel generateDummy() {
   for (CategoryModel category in categories) {
     category.id = generateCategoryId(categories);
   }
+
+  var categoryBloc = CategoryBlocModel.init();
+  categoryBloc.categories = categories;
+
+  return categoryBloc;
+}
+
+CategoryModel getDefaultCategory() {
+  return CategoryModel("1234567890", "All Products");
+}
+
+ProductBlocModel generateDummy() {
+  Random random = Random();
+  String generateRandomString(int length) {
+    const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+    return List.generate(length, (index) => chars[random.nextInt(chars.length)])
+        .join();
+  }
+
+  var categories = generateCategory().categories;
 
   List<ProductModel> products = List.generate(100, (index) {
     int categoryIndex = random.nextInt(categories.length);

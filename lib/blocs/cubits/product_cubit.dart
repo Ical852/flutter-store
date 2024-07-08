@@ -69,7 +69,8 @@ class ProductCubit extends Cubit<ProductBlocModel> {
   bool editProduct(ProductModel product, String id) {
     try {
       var newState = state;
-      int index = newState.pagination.products.indexWhere((product) => product.id == id);
+      int index = newState.pagination.products
+          .indexWhere((product) => product.id == id);
 
       if (index != -1) {
         newState.pagination.products[index] = product;
@@ -104,12 +105,16 @@ class ProductCubit extends Cubit<ProductBlocModel> {
       var categoryFilter = pagination.categoryFilter;
       var products = pagination.products;
 
-      if (categoryFilter.id.isNotEmpty) {
-        products = products.where((product) => product.category.id == categoryFilter.id).toList();
+      if (categoryFilter.id.isNotEmpty &&
+          categoryFilter.name != "All Products") {
+        products = products
+            .where((product) => product.category.id == categoryFilter.id)
+            .toList();
       }
 
       if (filter.isNotEmpty) {
-        products = products.where((product) => product.name.contains(filter)).toList();
+        products =
+            products.where((product) => product.name.contains(filter)).toList();
       }
 
       List<dynamic> pages = [];

@@ -3,8 +3,11 @@ import 'package:flutterstore/shared/constants.dart';
 
 extension TextStyleExtension on TextStyle {
   TextStyle get black => copyWith(color: blackColor);
+  TextStyle get black1S => copyWith(color: black1);
   TextStyle get white => copyWith(color: whiteColor);
   TextStyle get grey => copyWith(color: greyColor);
+  TextStyle get grey1S => copyWith(color: grey1);
+  TextStyle get green3S => copyWith(color: green3);
 
   TextStyle get light => copyWith(fontWeight: fontLight);
   TextStyle get regularF => copyWith(fontWeight: fontRegular);

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutterstore/blocs/cubits/category_cubit.dart';
 import 'package:flutterstore/blocs/cubits/product_cubit.dart';
+import 'package:flutterstore/blocs/cubits/search_cubit.dart';
 import 'package:flutterstore/screens/add_pages/add_category_page.dart';
 import 'package:flutterstore/screens/add_pages/add_product_page.dart';
 import 'package:flutterstore/screens/main_pages/main_page.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => ProductCubit()),
         BlocProvider(create: (context) => CategoryCubit()),
+        BlocProvider(create: (context) => SearchCubit()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

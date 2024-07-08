@@ -7,7 +7,7 @@ import 'package:flutterstore/widgets/menu_item.dart';
 // ignore: must_be_immutable
 class BottomNavigator extends StatelessWidget {
   Function(String) onPress;
-  Function onUp;
+  Function() onUp;
   String currentPage;
 
   BottomNavigator({
@@ -38,7 +38,7 @@ class BottomNavigator extends StatelessWidget {
                 shadowColor: Colors.transparent.withOpacity(0.1),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50))),
-            onPressed: () {},
+            onPressed: onUp,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
