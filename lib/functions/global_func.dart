@@ -150,17 +150,24 @@ ProductBlocModel generateDummy() {
   Random random = Random();
   String generateRandomString(int length) {
     const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
-    return List.generate(length, (index) => chars[random.nextInt(chars.length)]).join();
+    return List.generate(length, (index) => chars[random.nextInt(chars.length)])
+        .join();
   }
 
   List<String> categoryNames = [
-    "Shirt", "Pants", "Jacket", "Sweater", "Hat", "Boxers", 
-    "Underwear", "Outer", "Inner", "Shoes"
+    "Shirt",
+    "Pants",
+    "Jacket",
+    "Sweater",
+    "Hat",
+    "Boxers",
+    "Underwear",
+    "Outer",
+    "Inner",
+    "Shoes"
   ];
   List<CategoryModel> categories = List.generate(categoryNames.length, (index) {
-    return CategoryModel(
-      "", categoryNames[index]
-    );
+    return CategoryModel("", categoryNames[index]);
   });
   for (CategoryModel category in categories) {
     category.id = generateCategoryId(categories);
@@ -171,18 +178,17 @@ ProductBlocModel generateDummy() {
     CategoryModel category = categories[categoryIndex];
 
     return ProductModel(
-      random.nextInt(1000) + 1,
-      random.nextInt(1000) + 1,
-      random.nextInt(1000) + 1,
-      random.nextInt(1000) + 1,
-      category,
-      "",
-      generateRandomString(10),
-      generateRandomString(24),
-      generateRandomString(100),
-      imgDummies[index],
-      random.nextInt(1000000) + 100
-    );
+        random.nextInt(1000) + 1,
+        random.nextInt(1000) + 1,
+        random.nextInt(1000) + 1,
+        random.nextInt(1000) + 1,
+        category,
+        "",
+        generateRandomString(10),
+        generateRandomString(10),
+        generateRandomString(100),
+        imgDummies[index],
+        random.nextInt(1000000) + 100);
   });
   for (ProductModel product in products) {
     product.id = generateProductId(products);

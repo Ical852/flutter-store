@@ -39,3 +39,11 @@ FontWeight fontSemiBold = FontWeight.w600;
 FontWeight fontBold = FontWeight.w700;
 FontWeight fontExtraBold = FontWeight.w800;
 FontWeight fontBlackBold = FontWeight.w900;
+
+double safeAreaPadding(context) {
+  return MediaQuery.of(context).padding.top;
+}
+
+double bottomSafeAreaPadding(context) {
+  return MediaQuery.of(context).padding.bottom;
+}
