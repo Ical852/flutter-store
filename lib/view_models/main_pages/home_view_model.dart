@@ -16,6 +16,16 @@ class HomeViewModel {
     context.read<ProductCubit>().refreshProducts();
   }
 
+  void resetPagination() {
+    try {
+      context.read<ProductCubit>().resetPagination();
+      refreshProducts();
+      setCategory(getDefaultCategory());
+    } catch (e) {
+      showGLobalAlert("danger", "Failed to reset pagination", context);
+    }
+  }
+
   void setCategory(CategoryModel category) {
     try {
       context.read<CategoryCubit>().setCurrent(category);
@@ -31,6 +41,7 @@ class HomeViewModel {
     try {
       context.read<ProductCubit>().changeLimit(limit);
       Navigator.pop(context);
+      setPage(1);
       refreshProducts();
     } catch (e) {
       showGLobalAlert("danger", "Failed to set new pagination limit", context);

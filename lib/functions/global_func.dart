@@ -214,8 +214,8 @@ List<ProductModel> generateProducts(List<ProductModel> uniques) {
       random.nextInt(1000) + 1,
       category,
       "",
-      generateRandomString(10),
-      generateRandomString(10),
+      generateRandomString(24),
+      generateRandomString(64),
       generateRandomString(100),
       imgDummies[index],
       random.nextInt(1000000) + 100

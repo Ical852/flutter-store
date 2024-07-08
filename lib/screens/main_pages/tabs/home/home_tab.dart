@@ -5,12 +5,14 @@ import 'package:flutterstore/blocs/cubits/product_cubit.dart';
 import 'package:flutterstore/functions/global_func.dart';
 import 'package:flutterstore/models/category_bloc_model.dart';
 import 'package:flutterstore/models/product_bloc_model.dart';
+import 'package:flutterstore/screens/detail_pages/detail_page.dart';
 import 'package:flutterstore/screens/main_pages/tabs/home/partials/empty_products.dart';
 import 'package:flutterstore/screens/main_pages/tabs/home/partials/home_header.dart';
 import 'package:flutterstore/screens/main_pages/tabs/home/partials/limit_drawer.dart';
 import 'package:flutterstore/view_models/main_pages/home_view_model.dart';
 import 'package:flutterstore/widgets/category_item.dart';
 import 'package:flutterstore/widgets/paginations/paginations.dart';
+import 'package:flutterstore/widgets/product_cards/home_card.dart';
 import 'package:flutterstore/widgets/title_desc_limit.dart';
 
 class HomeTab extends StatefulWidget {
@@ -150,6 +152,24 @@ class _HomeTabState extends State<HomeTab> {
             child: Column(
               children: [
                 RenderPagination(state),
+                SizedBox(height: 20,),
+                Column(
+                  children: state.resultProduct.products.map(
+                    (product) {
+                      return HomeCard(
+                        product: product.product,
+                        onPress: (){
+                          Navigator.push(
+                            context, MaterialPageRoute(
+                              builder: (context) => DetailPage(product.product)
+                            )
+                          );
+                        },
+                      );
+                    }
+                  ).toList(),
+                ),
+                SizedBox(height: 172,),
               ],
             ),
           );
@@ -162,7 +182,11 @@ class _HomeTabState extends State<HomeTab> {
           child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          HomeHeader(),
+          HomeHeader(
+            onSeach: () => setState(() {
+              homeVM.resetPagination();
+            }),
+          ),
           SizedBox(
             height: 16,
           ),

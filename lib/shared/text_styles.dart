@@ -9,6 +9,7 @@ extension TextStyleExtension on TextStyle {
   TextStyle get grey1S => copyWith(color: grey1);
   TextStyle get green3S => copyWith(color: green3);
   TextStyle get pageS => copyWith(color: page);
+  TextStyle get primary => copyWith(color: green1);
 
   TextStyle get light => copyWith(fontWeight: fontLight);
   TextStyle get regularF => copyWith(fontWeight: fontRegular);

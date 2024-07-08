@@ -4,8 +4,10 @@ import 'package:flutterstore/shared/constants.dart';
 import 'package:flutterstore/shared/text_styles.dart';
 import 'package:flutterstore/widgets/image_custom.dart';
 
+// ignore: must_be_immutable
 class HomeHeader extends StatelessWidget {
-  const HomeHeader({super.key});
+  Function() onSeach;
+  HomeHeader({super.key, required this.onSeach});
 
   @override
   Widget build(BuildContext context) {
@@ -36,29 +38,35 @@ class HomeHeader extends StatelessWidget {
     }
 
     Widget RenderSearchBar() {
-      return Container(
-        height: 40,
-        decoration: BoxDecoration(
-          color: whiteColor,
-          borderRadius: BorderRadius.circular(8),
-          boxShadow: [
-            getBoxShadow(2)
-          ],
-        ),
+      return GestureDetector(
+        onTap: () {
+          onSeach();
+          Navigator.pushNamed(context, "/search");
+        },
         child: Container(
-          child: Row(
-            children: [
-              ImageCustom(
-                margin: EdgeInsets.symmetric(horizontal: 12),
-                height: 20,
-                width: 20,
-                image: AssetImage(getIC("ic_search.png")),
-              ),
-              Text(
-                "Search your products here...",
-                style: regular.regularF.copyWith(color: black1.withOpacity(0.4)),
-              )
+          height: 40,
+          decoration: BoxDecoration(
+            color: whiteColor,
+            borderRadius: BorderRadius.circular(8),
+            boxShadow: [
+              getBoxShadow(2)
             ],
+          ),
+          child: Container(
+            child: Row(
+              children: [
+                ImageCustom(
+                  margin: EdgeInsets.symmetric(horizontal: 12),
+                  height: 20,
+                  width: 20,
+                  image: AssetImage(getIC("ic_search.png")),
+                ),
+                Text(
+                  "Search your products here...",
+                  style: regular.regularF.copyWith(color: black1.withOpacity(0.4)),
+                )
+              ],
+            ),
           ),
         ),
       );
