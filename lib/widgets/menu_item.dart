@@ -9,8 +9,11 @@ class MenuItemCustom extends StatelessWidget {
   bool active;
   Function() onPress;
 
-  MenuItemCustom(
-      {required this.icon, this.active = false, required this.onPress});
+  MenuItemCustom({
+    required this.icon,
+    this.active = false,
+    required this.onPress
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -42,8 +45,9 @@ class MenuItemCustom extends StatelessWidget {
       return Text(
         getMenuTitle(),
         style: regular.copyWith(
-            fontWeight: active ? fontSemiBold : fontRegular,
-            color: active ? green1 : green3),
+          fontWeight: active ? fontSemiBold : fontRegular,
+          color: active ? green1 : green3
+        ),
       );
     }
 

@@ -7,24 +7,29 @@ import 'package:flutterstore/widgets/image_custom.dart';
 // ignore: must_be_immutable
 class TitleDescLimit extends StatelessWidget {
   String title, desc, limit;
+  bool isEmpty;
   Function() onPress;
 
-  TitleDescLimit(
-      {super.key,
-      required this.title,
-      required this.desc,
-      required this.limit,
-      required this.onPress});
+  TitleDescLimit({
+    super.key,
+    required this.title,
+    required this.desc,
+    required this.limit,
+    required this.onPress,
+    this.isEmpty = false,
+  });
 
   @override
   Widget build(BuildContext context) {
     Widget Toggle() {
+      if (isEmpty) return Container();
       return Container(
         padding: EdgeInsets.symmetric(vertical: 4, horizontal: 10),
         decoration: BoxDecoration(
-            color: whiteColor,
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(color: green3)),
+          color: whiteColor,
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: green3)
+        ),
         child: Row(
           children: [
             Text(

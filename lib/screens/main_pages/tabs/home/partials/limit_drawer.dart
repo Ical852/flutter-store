@@ -6,6 +6,7 @@ import 'package:flutterstore/widgets/screens/add/price_items/row_price_item.dart
 class LimitDrawer extends StatelessWidget {
   int currentLimit;
   Function(int) onPress;
+
   LimitDrawer({
     super.key,
     required this.currentLimit,
@@ -14,45 +15,45 @@ class LimitDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var prices = [
+    var limits = [
       [10, 20],
       [50, 100],
       [250, 500]
     ];
 
-    bool isPriceActive(price) {
-      return currentLimit == price;
+    bool isPriceActive(limit) {
+      return currentLimit == limit;
     }
 
     return StatefulBuilder(
-        builder: ((BuildContext context, StateSetter setState) {
-      return Container(
-        margin: EdgeInsets.only(top: 32, left: 24, right: 24),
-        child: ListView(
-          children: [
-            DrawerTitleDesc(
-              title: 'Choose Limit',
-              desc:
-                  'You can set your products pagination limit with the value down below',
-            ),
-            SizedBox(
-              height: 24,
-            ),
-            Column(
-              children: prices.map((price) {
-                return RowPriceItem(
-                  leftPrice: price[0],
-                  rightPrice: price[1],
-                  onLeft: () => onPress(price[0]),
-                  onRight: () => onPress(price[1]),
-                  leftActive: isPriceActive(price[0]),
-                  rightActive: isPriceActive(price[1]),
-                );
-              }).toList(),
-            ),
-          ],
-        ),
-      );
-    }));
+      builder: ((BuildContext context, StateSetter setState) {
+        return Container(
+          margin: EdgeInsets.only(top: 32, left: 24, right: 24),
+          child: ListView(
+            children: [
+              DrawerTitleDesc(
+                title: 'Choose Limit',
+                desc: 'You can set your products pagination limit with the value down below',
+              ),
+              SizedBox(
+                height: 24,
+              ),
+              Column(
+                children: limits.map((limit) {
+                  return RowPriceItem(
+                    leftPrice: limit[0],
+                    rightPrice: limit[1],
+                    onLeft: () => onPress(limit[0]),
+                    onRight: () => onPress(limit[1]),
+                    leftActive: isPriceActive(limit[0]),
+                    rightActive: isPriceActive(limit[1]),
+                  );
+                }).toList(),
+              ),
+            ],
+          ),
+        );
+      })
+    );
   }
 }

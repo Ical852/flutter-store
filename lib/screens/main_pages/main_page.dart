@@ -41,7 +41,10 @@ class _MainPageState extends State<MainPage> {
         child: Container(
           color: whiteColor,
           child: Stack(
-            children: [ContentRender(), BottomNavRender()],
+            children: [
+              ContentRender(),
+              BottomNavRender()
+            ],
           ),
         ),
       ),

@@ -14,17 +14,18 @@ class ImageCustom extends StatelessWidget {
   bool network;
   String? nwUrl;
 
-  ImageCustom(
-      {this.image,
-      required this.height,
-      required this.width,
-      this.borderRadius,
-      this.padding,
-      this.margin,
-      this.fit,
-      this.child,
-      this.network = false,
-      this.nwUrl});
+  ImageCustom({
+    this.image,
+    required this.height,
+    required this.width,
+    this.borderRadius,
+    this.padding,
+    this.margin,
+    this.fit,
+    this.child,
+    this.network = false,
+    this.nwUrl
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +39,12 @@ class ImageCustom extends StatelessWidget {
             width: width,
             height: height,
             decoration: BoxDecoration(
-                image: DecorationImage(image: imageProvider, fit: fit),
-                borderRadius: borderRadius),
+              image: DecorationImage(
+                image: imageProvider,
+                fit: fit
+              ),
+              borderRadius: borderRadius
+            ),
           );
         },
         placeholder: (context, url) => CircularProgressIndicator(
@@ -59,8 +64,12 @@ class ImageCustom extends StatelessWidget {
       width: width,
       height: height,
       decoration: BoxDecoration(
-          image: DecorationImage(image: image!, fit: fit),
-          borderRadius: borderRadius),
+        image: DecorationImage(
+          image: image!,
+          fit: fit
+        ),
+        borderRadius: borderRadius
+      ),
       child: child,
     );
   }

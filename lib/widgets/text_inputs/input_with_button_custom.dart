@@ -12,15 +12,16 @@ class InputWithButtonCustom extends StatelessWidget {
   Function() onPress;
   Function(String)? onChanged;
 
-  InputWithButtonCustom(
-      {required this.title,
-      required this.hint,
-      this.password = false,
-      required this.controller,
-      this.inputType = TextInputType.text,
-      required this.iconContent,
-      required this.onPress,
-      this.onChanged});
+  InputWithButtonCustom({
+    required this.title,
+    required this.hint,
+    this.password = false,
+    required this.controller,
+    this.inputType = TextInputType.text,
+    required this.iconContent,
+    required this.onPress,
+    this.onChanged
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -45,13 +46,19 @@ class InputWithButtonCustom extends StatelessWidget {
                   hintText: hint,
                   hintStyle: medium.green3S.regularF,
                   enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: green3),
-                      borderRadius: BorderRadius.circular(8)),
-                  contentPadding:
-                      EdgeInsets.only(top: 13, bottom: 13, left: 21, right: 56),
+                    borderSide: BorderSide(color: green3),
+                    borderRadius: BorderRadius.circular(8)
+                  ),
+                  contentPadding: EdgeInsets.only(
+                    top: 13,
+                    bottom: 13,
+                    left: 21,
+                    right: 56
+                  ),
                   focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: green1),
-                      borderRadius: BorderRadius.circular(8)),
+                    borderSide: BorderSide(color: green1),
+                    borderRadius: BorderRadius.circular(8)
+                  ),
                 ),
               ),
               GestureDetector(

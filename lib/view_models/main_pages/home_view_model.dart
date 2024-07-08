@@ -10,7 +10,6 @@ class HomeViewModel {
 
   HomeViewModel(BuildContext context) {
     this.context = context;
-    refreshProducts();
   }
 
   void refreshProducts() {
@@ -21,6 +20,7 @@ class HomeViewModel {
     try {
       context.read<CategoryCubit>().setCurrent(category);
       context.read<ProductCubit>().changeCategory(category);
+      setPage(1);
       refreshProducts();
     } catch (e) {
       showGLobalAlert("danger", "Failed to set new category", context);
@@ -34,6 +34,15 @@ class HomeViewModel {
       refreshProducts();
     } catch (e) {
       showGLobalAlert("danger", "Failed to set new pagination limit", context);
+    }
+  }
+
+  void setPage(int page) {
+    try {
+      context.read<ProductCubit>().changePage(page);
+      refreshProducts();
+    } catch (e) {
+      showGLobalAlert("danger", "Failed to set new page", context);
     }
   }
 }

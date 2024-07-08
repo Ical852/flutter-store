@@ -48,8 +48,9 @@ String generateCategoryId(List<CategoryModel> categories) {
   var uuid = Uuid();
   var generated = uuid.v1();
   CategoryModel find = categories.firstWhere(
-      (category) => category.id == generated,
-      orElse: () => CategoryModel.init());
+    (category) => category.id == generated,
+    orElse: () => CategoryModel.init()
+  );
 
   if (find.id.isEmpty) {
     return generated;
@@ -60,8 +61,10 @@ String generateCategoryId(List<CategoryModel> categories) {
 String generateProductId(List<ProductModel> products) {
   var uuid = Uuid();
   var generated = uuid.v1();
-  ProductModel find = products.firstWhere((product) => product.id == generated,
-      orElse: () => ProductModel.init());
+  ProductModel find = products.firstWhere(
+    (product) => product.id == generated,
+    orElse: () => ProductModel.init()
+  );
 
   if (find.id.isEmpty) {
     return generated;
@@ -116,9 +119,10 @@ Future<File?> pickImage(ImageSource source) async {
 
 BoxShadow getBoxShadow(double show) {
   return BoxShadow(
-      color: blackColor.withOpacity(show / 10),
-      blurRadius: show,
-      offset: Offset(0, show));
+    color: blackColor.withOpacity(show / 10),
+    blurRadius: show,
+    offset: Offset(0, show)
+  );
 }
 
 void showGLobalAlert(type, text, context) {
@@ -131,7 +135,10 @@ void showGLobalAlert(type, text, context) {
     ),
     backgroundColor: getColorType(type),
     shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(8))),
+      borderRadius: BorderRadius.vertical(
+        top: Radius.circular(8)
+      )
+    ),
   ));
 }
 
@@ -139,15 +146,21 @@ void showDrawer(BuildContext context, double height, Widget content) {
   showModalBottomSheet<void>(
     context: context,
     shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(32), topRight: Radius.circular(32))),
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(32), 
+        topRight: Radius.circular(32)
+      )
+    ),
     builder: (BuildContext context) {
       return Container(
         height: height,
         decoration: BoxDecoration(
-            color: whiteColor,
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(32), topRight: Radius.circular(32))),
+          color: whiteColor,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(32),
+            topRight: Radius.circular(32)
+          )
+        ),
         child: content,
       );
     },
@@ -168,11 +181,8 @@ CategoryBlocModel generateCategory() {
     "Shoes"
   ];
   List<CategoryModel> categories = List.generate(categoryNames.length, (index) {
-    return CategoryModel("", categoryNames[index]);
+    return CategoryModel("${categoryNames[index]}-$index", categoryNames[index]);
   });
-  for (CategoryModel category in categories) {
-    category.id = generateCategoryId(categories);
-  }
 
   var categoryBloc = CategoryBlocModel.init();
   categoryBloc.categories = categories;
@@ -184,12 +194,11 @@ CategoryModel getDefaultCategory() {
   return CategoryModel("1234567890", "All Products");
 }
 
-ProductBlocModel generateDummy() {
+List<ProductModel> generateProducts(List<ProductModel> uniques) {
   Random random = Random();
   String generateRandomString(int length) {
     const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
-    return List.generate(length, (index) => chars[random.nextInt(chars.length)])
-        .join();
+    return List.generate(length, (index) => chars[random.nextInt(chars.length)]).join();
   }
 
   var categories = generateCategory().categories;
@@ -199,24 +208,34 @@ ProductBlocModel generateDummy() {
     CategoryModel category = categories[categoryIndex];
 
     return ProductModel(
-        random.nextInt(1000) + 1,
-        random.nextInt(1000) + 1,
-        random.nextInt(1000) + 1,
-        random.nextInt(1000) + 1,
-        category,
-        "",
-        generateRandomString(10),
-        generateRandomString(10),
-        generateRandomString(100),
-        imgDummies[index],
-        random.nextInt(1000000) + 100);
+      random.nextInt(1000) + 1,
+      random.nextInt(1000) + 1,
+      random.nextInt(1000) + 1,
+      random.nextInt(1000) + 1,
+      category,
+      "",
+      generateRandomString(10),
+      generateRandomString(10),
+      generateRandomString(100),
+      imgDummies[index],
+      random.nextInt(1000000) + 100
+    );
   });
+
   for (ProductModel product in products) {
-    product.id = generateProductId(products);
+    product.id = generateProductId([...products, ...uniques]);
   }
 
+  return products;
+}
+
+ProductBlocModel generateDummy() {
+  var products1 = generateProducts([]);
+  var products2 = generateProducts(products1);
+  var products3 = generateProducts([...products1, ...products2]);
+
   var productBloc = ProductBlocModel.init();
-  productBloc.pagination.products = products;
+  productBloc.pagination.products = [...products1, ...products2, ...products3];
 
   return productBloc;
 }

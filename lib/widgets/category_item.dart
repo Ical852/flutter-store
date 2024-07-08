@@ -24,18 +24,18 @@ class CategoryItem extends StatelessWidget {
         margin: EdgeInsets.only(right: 16),
         padding: EdgeInsets.symmetric(vertical: 10, horizontal: 12),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            color: isCurrent ? green1 : whiteColor,
-            border: isCurrent
-                ? null
-                : Border.all(
-                    color: green1,
-                  )),
+          borderRadius: BorderRadius.circular(12),
+          color: isCurrent ? green1 : whiteColor,
+          border: isCurrent ? null : Border.all(
+            color: green1
+          )
+        ),
         child: Text(
           title,
           style: regular.copyWith(
-              fontWeight: isCurrent ? fontMedium : fontLight,
-              color: isCurrent ? whiteColor : green1),
+            fontWeight: isCurrent ? fontMedium : fontLight,
+            color: isCurrent ? whiteColor : green1
+          ),
         ),
       ),
     );

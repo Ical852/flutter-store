@@ -58,7 +58,7 @@ class ProductCubit extends Cubit<ProductBlocModel> {
   bool submitProduct(ProductModel product) {
     try {
       var newState = state;
-      newState.pagination.products.add(product);
+      newState.pagination.products.insert(0, product);
       emit(newState);
       return true;
     } catch (e) {
@@ -69,8 +69,7 @@ class ProductCubit extends Cubit<ProductBlocModel> {
   bool editProduct(ProductModel product, String id) {
     try {
       var newState = state;
-      int index = newState.pagination.products
-          .indexWhere((product) => product.id == id);
+      int index = newState.pagination.products.indexWhere((product) => product.id == id);
 
       if (index != -1) {
         newState.pagination.products[index] = product;
@@ -105,22 +104,24 @@ class ProductCubit extends Cubit<ProductBlocModel> {
       var categoryFilter = pagination.categoryFilter;
       var products = pagination.products;
 
-      if (categoryFilter.id.isNotEmpty &&
-          categoryFilter.name != "All Products") {
+      if (
+        categoryFilter.id.isNotEmpty &&
+        categoryFilter.name != "All Products"
+      ) {
         products = products
-            .where((product) => product.category.id == categoryFilter.id)
-            .toList();
+          .where((product) => product.category.id == categoryFilter.id)
+          .toList();
       }
 
       if (filter.isNotEmpty) {
-        products =
-            products.where((product) => product.name.contains(filter)).toList();
+        products = products.where((product) => product.name.contains(filter)).toList();
       }
 
       List<dynamic> pages = [];
       for (int i = 1; i <= (products.length / limit).round(); i++) {
         pages.add(i);
       }
+      newState.pagination.lastPage = pages[pages.length - 1];
 
       List<dynamic> formatPages = [];
       if (pages.length > 5) {
@@ -160,6 +161,20 @@ class ProductCubit extends Cubit<ProductBlocModel> {
       newState.resultProduct = results;
       emit(newState);
 
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  bool resetPagination() {
+    try {
+      var newState = state;
+      newState.pagination.page = 1;
+      newState.pagination.filter = "";
+      newState.pagination.categoryFilter = getDefaultCategory();
+      newState.pagination.limit = 10;
+      emit(newState);
       return true;
     } catch (e) {
       return false;
