@@ -9,6 +9,20 @@ part '../states/category_state.dart';
 class CategoryCubit extends Cubit<CategoryBlocModel> {
   CategoryCubit() : super(generateCategory());
 
+  bool filter(String name) {
+    try {
+      var newState = state;
+      newState.filtered = newState.categories
+          .where((category) =>
+              category.name.toLowerCase().contains(name.toLowerCase()))
+          .toList();
+      emit(newState);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
   bool setCurrent(CategoryModel category) {
     try {
       var newState = state;

@@ -33,7 +33,6 @@ class _HomeTabState extends State<HomeTab> {
 
   @override
   Widget build(BuildContext context) {
-
     Widget CategoryContent() {
       return Container(
         child: SingleChildScrollView(
@@ -111,31 +110,31 @@ class _HomeTabState extends State<HomeTab> {
       return Paginations(
         pages: state.resultProduct.pages,
         current: state.pagination.page,
-        onLatest: (){
+        onLatest: () {
           setState(() {
             homeVM.setPage(1);
           });
         },
-        onPrev: (){
+        onPrev: () {
           if (state.pagination.page != 1) {
             setState(() {
               homeVM.setPage(state.pagination.page - 1);
             });
           }
         },
-        onChangePage: (page){
+        onChangePage: (page) {
           setState(() {
             homeVM.setPage(page);
           });
         },
-        onNext: (){
+        onNext: () {
           if (state.pagination.page != state.pagination.lastPage) {
             setState(() {
               homeVM.setPage(state.pagination.page + 1);
             });
           }
         },
-        onEnd: (){
+        onEnd: () {
           setState(() {
             homeVM.setPage(state.pagination.lastPage);
           });
@@ -152,24 +151,30 @@ class _HomeTabState extends State<HomeTab> {
             child: Column(
               children: [
                 RenderPagination(state),
-                SizedBox(height: 20,),
-                Column(
-                  children: state.resultProduct.products.map(
-                    (product) {
-                      return HomeCard(
-                        product: product.product,
-                        onPress: (){
-                          Navigator.push(
-                            context, MaterialPageRoute(
-                              builder: (context) => DetailPage(product.product)
-                            )
-                          );
-                        },
-                      );
-                    }
-                  ).toList(),
+                SizedBox(
+                  height: 20,
                 ),
-                SizedBox(height: 172,),
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: state.resultProduct.products.length,
+                  itemBuilder: (context, index) {
+                    var product = state.resultProduct.products[index];
+                    return HomeCard(
+                      product: product.product,
+                      onPress: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    DetailPage(product.product)));
+                      },
+                    );
+                  },
+                ),
+                SizedBox(
+                  height: 172,
+                ),
               ],
             ),
           );

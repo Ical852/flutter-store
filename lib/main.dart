@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutterstore/blocs/cubits/category_cubit.dart';
+import 'package:flutterstore/blocs/cubits/page_cubit.dart';
 import 'package:flutterstore/blocs/cubits/product_cubit.dart';
 import 'package:flutterstore/blocs/cubits/search_cubit.dart';
-import 'package:flutterstore/screens/add_pages/add_category_page.dart';
-import 'package:flutterstore/screens/add_pages/add_product_page.dart';
+import 'package:flutterstore/screens/add_pages/category/add_category_page.dart';
+import 'package:flutterstore/screens/add_pages/product/add_product_page.dart';
 import 'package:flutterstore/screens/main_pages/main_page.dart';
 import 'package:flutterstore/screens/search_pages/search_page.dart';
 import 'package:flutterstore/screens/splash_page.dart';
@@ -20,10 +21,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: green1));
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarColor: green1));
 
     return MultiBlocProvider(
       providers: [
+        BlocProvider(create: (context) => PageCubit()),
         BlocProvider(create: (context) => ProductCubit()),
         BlocProvider(create: (context) => CategoryCubit()),
         BlocProvider(create: (context) => SearchCubit()),

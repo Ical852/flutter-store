@@ -20,9 +20,17 @@ class ProductModel {
   }
 
   ProductModel(
-    int weight, width, length, height,
+    int weight,
+    width,
+    length,
+    height,
+    price,
     CategoryModel category,
-    String id, sku, name, desc, image, price
+    String id,
+    sku,
+    name,
+    desc,
+    image,
   ) {
     this.id = id;
     this.weight = weight;

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutterstore/models/category_model.dart';
 
+// ignore: must_be_immutable
 class EditCategoryPage extends StatefulWidget {
-  const EditCategoryPage({super.key});
+  CategoryModel category;
+  EditCategoryPage(this.category);
 
   @override
   State<EditCategoryPage> createState() => _EditCategoryPageState();
@@ -10,6 +13,6 @@ class EditCategoryPage extends StatefulWidget {
 class _EditCategoryPageState extends State<EditCategoryPage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold();
   }
 }
