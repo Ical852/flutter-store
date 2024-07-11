@@ -1,27 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutterstore/blocs/cubits/category_cubit.dart';
-import 'package:flutterstore/functions/global_func.dart';
 import 'package:flutterstore/models/category_model.dart';
-import 'package:flutterstore/view_models/add_pages/add_category_view_model.dart';
+import 'package:flutterstore/view_models/edit_pages/edit_category_view_model.dart';
 import 'package:flutterstore/widgets/buttons/main_button_custom.dart';
 import 'package:flutterstore/widgets/header.dart';
 import 'package:flutterstore/widgets/text_inputs/main_input_custom.dart';
-import '../../../shared/constants.dart';
+import '../../../../shared/constants.dart';
 
-class AddCategoryPage extends StatefulWidget {
+// ignore: must_be_immutable
+class EditCategoryPage extends StatefulWidget {
+  CategoryModel category;
+  EditCategoryPage(this.category);
+
   @override
-  State<AddCategoryPage> createState() => _AddCategoryPageState();
+  State<EditCategoryPage> createState() => _EditCategoryPageState();
 }
 
-class _AddCategoryPageState extends State<AddCategoryPage> {
+class _EditCategoryPageState extends State<EditCategoryPage> {
   TextEditingController categoryNameController = TextEditingController(text: "");
-  late var addCategoryVM = AddCategoryViewModel(context);
+  late var editCategoryVM = EditCategoryViewModel(context);
   bool isButtonDisabled = true;
 
   @override
   void initState() {
     super.initState();
+    categoryNameController.text = this.widget.category.name;
     categoryNameController.addListener(_validateInput);
   }
 
@@ -40,14 +42,13 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
 
   @override
   Widget build(BuildContext context) {
-    void createCategory() {
-      var categories = context.read<CategoryCubit>().state.categories;
+    void updateCategory() {
       var category = CategoryModel(
-        generateCategoryId(categories),
+        this.widget.category.id,
         categoryNameController.text
       );
 
-      addCategoryVM.createCategory(category);
+      editCategoryVM.updateCategory(category);
     }
 
     return Scaffold(
@@ -66,7 +67,7 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
                     child: ListView(
                       children: [
                         SizedBox(height: 30),
-                        Header(title: "Create Category"),
+                        Header(title: "Edit Category"),
                         SizedBox(height: 32),
                         MainInputCustom(
                           title: "Category Name",
@@ -75,10 +76,10 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
                         ),
                         SizedBox(height: 20),
                         MainButtonCustom(
-                          title: 'Create Category',
+                          title: 'Update Category',
                           onPressed: () {
                             setState(() {
-                              createCategory();
+                              updateCategory();
                             });
                           },
                           disabled: isButtonDisabled

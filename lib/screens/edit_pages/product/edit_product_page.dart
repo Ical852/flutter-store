@@ -1,27 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutterstore/blocs/cubits/category_cubit.dart';
-import 'package:flutterstore/blocs/cubits/product_cubit.dart';
 import 'package:flutterstore/functions/global_func.dart';
 import 'package:flutterstore/models/category_bloc_model.dart';
 import 'package:flutterstore/models/product_model.dart';
-import 'package:flutterstore/screens/add_pages/product/partials/category_drawer.dart';
-import 'package:flutterstore/screens/add_pages/product/partials/price_drawer.dart';
+import 'package:flutterstore/screens/edit_pages/product/partials/category_drawer.dart';
+import 'package:flutterstore/screens/edit_pages/product/partials/price_drawer.dart';
 import 'package:flutterstore/shared/text_styles.dart';
-import 'package:flutterstore/view_models/add_pages/add_product_view_model.dart';
+import 'package:flutterstore/view_models/edit_pages/edit_product_view_model.dart';
 import 'package:flutterstore/widgets/buttons/main_button_custom.dart';
 import 'package:flutterstore/widgets/header.dart';
 import 'package:flutterstore/widgets/image_custom.dart';
 import 'package:flutterstore/widgets/text_inputs/input_with_button_custom.dart';
 import 'package:flutterstore/widgets/text_inputs/main_input_custom.dart';
-import '../../../shared/constants.dart';
+import '../../../../shared/constants.dart';
 
-class AddProductPage extends StatefulWidget {
+// ignore: must_be_immutable
+class EditProductPage extends StatefulWidget {
+  ProductModel product;
+  EditProductPage(this.product);
+
   @override
-  State<AddProductPage> createState() => _AddProductPageState();
+  State<EditProductPage> createState() => _EditProductPageState();
 }
 
-class _AddProductPageState extends State<AddProductPage> {
+class _EditProductPageState extends State<EditProductPage> {
   TextEditingController productNameController = TextEditingController(text: "");
   TextEditingController productDescController = TextEditingController(text: "");
   TextEditingController productPriceController = TextEditingController(text: "");
@@ -32,14 +35,29 @@ class _AddProductPageState extends State<AddProductPage> {
   TextEditingController widthController = TextEditingController(text: "");
   TextEditingController lengthController = TextEditingController(text: "");
 
-  late var addProductVM = AddProductViewModel(context);
+  late var editProductVM = EditProductViewModel(context);
   bool isButtonDisabled = true;
   var currentPrice = 0;
-  late var category = context.read<CategoryCubit>().state.categories[0];
+  late var category = this.widget.product.category;
 
   @override
   void initState() {
     super.initState();
+
+    setState(() {
+      currentPrice = this.widget.product.price;
+      category = this.widget.product.category;
+      productNameController.text = this.widget.product.name;
+      productDescController.text = this.widget.product.desc;
+      productPriceController.text = this.widget.product.price.toString();
+      imageUrlController.text = this.widget.product.image;
+      skuController.text = this.widget.product.sku;
+      weightController.text = this.widget.product.weight.toString();
+      heightController.text = this.widget.product.height.toString();
+      widthController.text = this.widget.product.width.toString();
+      lengthController.text = this.widget.product.length.toString();
+    });
+
     productNameController.addListener(_validateInput);
     productDescController.addListener(_validateInput);
     productPriceController.addListener(_validateInput);
@@ -141,8 +159,7 @@ class _AddProductPageState extends State<AddProductPage> {
       );
     }
 
-    void createProduct() {
-      var products = context.read<ProductCubit>().state.pagination.products;
+    void updateProduct() {
       var product = ProductModel(
         int.parse(weightController.text),
         int.parse(widthController.text),
@@ -150,14 +167,14 @@ class _AddProductPageState extends State<AddProductPage> {
         int.parse(heightController.text),
         int.parse(productPriceController.text),
         category,
-        generateProductId(products),
+        this.widget.product.id,
         skuController.text,
         productNameController.text,
         productDescController.text,
         imageUrlController.text,
       );
 
-      addProductVM.createProduct(product);
+      editProductVM.updateProduct(product);
     }
 
     Widget CategoryInput(context) {
@@ -243,7 +260,7 @@ class _AddProductPageState extends State<AddProductPage> {
                     child: ListView(
                       children: [
                         SizedBox(height: 30),
-                        Header(title: "Create Products"),
+                        Header(title: "Edit Product"),
                         SizedBox(height: 32),
                         MainInputCustom(
                           title: "Product Name",
@@ -302,10 +319,10 @@ class _AddProductPageState extends State<AddProductPage> {
                         ),
                         SizedBox(height: 32),
                         MainButtonCustom(
-                          title: 'Create Product',
+                          title: 'Update Product',
                           onPressed: () {
                             setState(() {
-                              createProduct();
+                              updateProduct();
                             });
                           },
                           disabled: isButtonDisabled

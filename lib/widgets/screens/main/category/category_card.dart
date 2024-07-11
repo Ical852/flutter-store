@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterstore/functions/global_func.dart';
 import 'package:flutterstore/models/category_model.dart';
-import 'package:flutterstore/screens/edit_pages/edit_category_page.dart';
+import 'package:flutterstore/screens/edit_pages/category/edit_category_page.dart';
 import 'package:flutterstore/shared/constants.dart';
 import 'package:flutterstore/shared/text_styles.dart';
 import 'package:flutterstore/widgets/buttons/mini_button_custom.dart';

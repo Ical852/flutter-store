@@ -13,9 +13,8 @@ class CategoryCubit extends Cubit<CategoryBlocModel> {
     try {
       var newState = state;
       newState.filtered = newState.categories
-          .where((category) =>
-              category.name.toLowerCase().contains(name.toLowerCase()))
-          .toList();
+        .where((category) => category.name.toLowerCase().contains(name.toLowerCase()))
+        .toList();
       emit(newState);
       return true;
     } catch (e) {
@@ -37,7 +36,7 @@ class CategoryCubit extends Cubit<CategoryBlocModel> {
   bool submitCategory(CategoryModel category) {
     try {
       var newState = state;
-      newState.categories.add(category);
+      newState.categories.insert(0, category);
       emit(newState);
       return true;
     } catch (e) {
@@ -48,8 +47,7 @@ class CategoryCubit extends Cubit<CategoryBlocModel> {
   bool editCategory(CategoryModel category, String id) {
     try {
       var newState = state;
-      int index =
-          newState.categories.indexWhere((category) => category.id == id);
+      int index = newState.categories.indexWhere((category) => category.id == id);
 
       if (index != -1) {
         newState.categories[index] = category;

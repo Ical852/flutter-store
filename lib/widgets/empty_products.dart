@@ -4,8 +4,16 @@ import 'package:flutterstore/shared/text_styles.dart';
 import 'package:flutterstore/widgets/buttons/mini_button_custom.dart';
 import 'package:flutterstore/widgets/image_custom.dart';
 
+// ignore: must_be_immutable
 class EmptyProducts extends StatelessWidget {
-  const EmptyProducts({super.key});
+  String desc;
+  bool noBtn;
+
+  EmptyProducts({
+    super.key,
+    this.desc = "",
+    this.noBtn = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,16 +34,16 @@ class EmptyProducts extends StatelessWidget {
           Container(
             width: 270,
             child: Text(
-              "Seems like you haven’t published any products yet, go publish some product",
+              desc != "" ? desc : "Seems like you haven’t published any products yet, go publish some product",
               textAlign: TextAlign.center,
               style: regular.grey1S.light,
             ),
           ),
           SizedBox(height: 24,),
-          MiniButtonCustom(
+          !noBtn ? MiniButtonCustom(
             title: "Create Product",
             onPressed: () => Navigator.pushNamed(context, "/add-product"),
-          ),
+          ) : SizedBox(),
           SizedBox(height: 172,),
         ],
       ),

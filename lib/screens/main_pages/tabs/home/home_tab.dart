@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutterstore/blocs/cubits/category_cubit.dart';
 import 'package:flutterstore/blocs/cubits/product_cubit.dart';
 import 'package:flutterstore/functions/global_func.dart';
-import 'package:flutterstore/models/category_bloc_model.dart';
 import 'package:flutterstore/models/product_bloc_model.dart';
 import 'package:flutterstore/screens/detail_pages/detail_page.dart';
-import 'package:flutterstore/screens/main_pages/tabs/home/partials/empty_products.dart';
+import 'package:flutterstore/widgets/empty_products.dart';
 import 'package:flutterstore/screens/main_pages/tabs/home/partials/home_header.dart';
-import 'package:flutterstore/screens/main_pages/tabs/home/partials/limit_drawer.dart';
+import 'package:flutterstore/widgets/category_list.dart';
+import 'package:flutterstore/widgets/limit_drawer.dart';
 import 'package:flutterstore/view_models/main_pages/home_view_model.dart';
-import 'package:flutterstore/widgets/category_item.dart';
 import 'package:flutterstore/widgets/paginations/paginations.dart';
 import 'package:flutterstore/widgets/product_cards/home_card.dart';
 import 'package:flutterstore/widgets/title_desc_limit.dart';
@@ -34,44 +32,13 @@ class _HomeTabState extends State<HomeTab> {
   @override
   Widget build(BuildContext context) {
     Widget CategoryContent() {
-      return Container(
-        child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: BlocConsumer<CategoryCubit, CategoryBlocModel>(
-            listener: (context, state) {},
-            builder: (context, state) {
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    width: 24,
-                  ),
-                  CategoryItem(
-                    title: "All Products",
-                    current: state.current.name,
-                    onPress: () => setState(() {
-                      homeVM.setCategory(getDefaultCategory());
-                    }),
-                  ),
-                  Row(
-                    children: state.categories.map((category) {
-                      return CategoryItem(
-                        title: category.name,
-                        current: state.current.name,
-                        onPress: () => setState(() {
-                          homeVM.setCategory(category);
-                        }),
-                      );
-                    }).toList(),
-                  ),
-                  SizedBox(
-                    width: 8,
-                  ),
-                ],
-              );
-            },
-          ),
-        ),
+      return CategoryList(
+        onAllProducts: () => setState(() {
+          homeVM.setCategory(getDefaultCategory());
+        }),
+        onChoose: (category) => setState(() {
+          homeVM.setCategory(category);
+        }),
       );
     }
 
@@ -164,10 +131,11 @@ class _HomeTabState extends State<HomeTab> {
                       product: product.product,
                       onPress: () {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    DetailPage(product.product)));
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailPage(product.product)
+                          )
+                        );
                       },
                     );
                   },
@@ -184,28 +152,23 @@ class _HomeTabState extends State<HomeTab> {
 
     return Container(
       child: SingleChildScrollView(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          HomeHeader(
-            onSeach: () => setState(() {
-              homeVM.resetPagination();
-            }),
-          ),
-          SizedBox(
-            height: 16,
-          ),
-          CategoryContent(),
-          SizedBox(
-            height: 16,
-          ),
-          LimitContent(),
-          SizedBox(
-            height: 20,
-          ),
-          MainContent()
-        ],
-      )),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            HomeHeader(
+              onSeach: () => setState(() {
+                homeVM.resetPagination();
+              }),
+            ),
+            SizedBox(height: 16),
+            CategoryContent(),
+            SizedBox(height: 16),
+            LimitContent(),
+            SizedBox(height: 20),
+            MainContent()
+          ],
+        )
+      ),
     );
   }
 }

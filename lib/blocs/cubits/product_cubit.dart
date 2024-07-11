@@ -163,6 +163,9 @@ class ProductCubit extends Cubit<ProductBlocModel> {
 
       return true;
     } catch (e) {
+      var newState = state;
+      newState.resultProduct.products = [];
+      emit(newState);
       return false;
     }
   }
