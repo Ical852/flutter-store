@@ -186,7 +186,6 @@ void showConfirm(BuildContext context, String confirm, Function onYes, onCancel)
             child: Text('Yes'),
             onPressed: () {
               onYes();
-              Navigator.of(context).pop(true);
             },
           ),
         ],

@@ -10,7 +10,7 @@ class DetailViewModel {
     this.context = context;
   }
 
-  void deleteProduct(String id) {
+  void deleteProduct(String id, BuildContext context) {
     try {
       context.read<ProductCubit>().deleteProduct(id);
       showGLobalAlert("success", "Success to delete product", context);

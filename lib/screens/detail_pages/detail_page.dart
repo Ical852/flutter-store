@@ -30,13 +30,9 @@ class _DetailPageState extends State<DetailPage> {
         alignment: Alignment.bottomCenter,
         child: Container(
           height: 70,
-          padding: EdgeInsets.symmetric(
-            horizontal: 24
-          ),
-          decoration: BoxDecoration(
-            color: whiteColor,
-            boxShadow: [getBoxShadow(9)]
-          ),
+          padding: EdgeInsets.symmetric(horizontal: 24),
+          decoration:
+              BoxDecoration(color: whiteColor, boxShadow: [getBoxShadow(9)]),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -44,16 +40,16 @@ class _DetailPageState extends State<DetailPage> {
                 moneyFormat(widget.product.price),
                 style: mega.primary.semiBold,
               ),
-              MiniButtonCustom( 
+              MiniButtonCustom(
                 width: 165,
                 height: 40,
                 title: "Edit Product",
-                onPressed: (){
+                onPressed: () {
                   Navigator.push(
-                    context, MaterialPageRoute(
-                      builder: (context) => EditProductPage(widget.product)
-                    )
-                  );
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              EditProductPage(widget.product)));
                 },
               )
             ],
@@ -61,14 +57,10 @@ class _DetailPageState extends State<DetailPage> {
         ),
       );
     }
-    
-    Widget MainContent() {
+
+    Widget MainContent(context) {
       return Container(
-        margin: EdgeInsets.only(
-          left: 24,
-          right: 24,
-          top: 81
-        ),
+        margin: EdgeInsets.only(left: 24, right: 24, top: 81),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -93,25 +85,32 @@ class _DetailPageState extends State<DetailPage> {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
-                        SizedBox(height: 3,),
+                        SizedBox(
+                          height: 3,
+                        ),
                         BadgeCustom(title: this.widget.product.category.name)
                       ],
                     ),
                   ),
-                  SizedBox(width: 12,),
-                  CircleButton(onPressed: (){
+                  SizedBox(
+                    width: 12,
+                  ),
+                  CircleButton(onPressed: () {
                     showConfirm(
-                      context, 
+                      context,
                       "Are you sure wnat to delete this product?",
                       (){
-                        detailVM.deleteProduct(this.widget.product.id);
+                        detailVM.deleteProduct(this.widget.product.id, context);
                       },
                       (){}
                     );
                   })
                 ],
               ),
-              SizedBox(height: 172,),
+              Container(),
+              SizedBox(
+                height: 172,
+              ),
             ],
           ),
         ),
@@ -125,13 +124,9 @@ class _DetailPageState extends State<DetailPage> {
           child: Stack(
             children: [
               Container(
-                margin: EdgeInsets.symmetric(
-                  horizontal: 24,
-                  vertical: 32
-                ),
-                child: Header(title: "Product Detail")
-              ),
-              MainContent(),
+                  margin: EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+                  child: Header(title: "Product Detail")),
+              MainContent(context),
               BottomAction(),
             ],
           ),
