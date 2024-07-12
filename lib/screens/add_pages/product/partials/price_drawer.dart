@@ -40,7 +40,6 @@ class PriceDrawer extends StatelessWidget {
                     setFastPrice(price[0], setState);
                   },
                   onRight: () {
-                    print(price[1]);
                     setFastPrice(price[1], setState);
                   },
                   leftActive: isPriceActive(price[0]),

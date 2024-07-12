@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterstore/shared/constants.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 extension TextStyleExtension on TextStyle {
   TextStyle get black => copyWith(color: blackColor);
@@ -20,11 +21,11 @@ extension TextStyleExtension on TextStyle {
   TextStyle get blackBold => copyWith(fontWeight: fontBlackBold);
 }
 
-TextStyle xSmall = TextStyle(fontSize: xSmallSize);
-TextStyle small = TextStyle(fontSize: smallSize);
-TextStyle regular = TextStyle(fontSize: regularSize);
-TextStyle medium = TextStyle(fontSize: mediumSize);
-TextStyle base = TextStyle(fontSize: baseSize);
-TextStyle mega = TextStyle(fontSize: megaSize);
-TextStyle extra = TextStyle(fontSize: extraSize);
-TextStyle mass = TextStyle(fontSize: massSize);
+TextStyle xSmall = GoogleFonts.poppins(fontSize: xSmallSize);
+TextStyle small = GoogleFonts.poppins(fontSize: smallSize);
+TextStyle regular = GoogleFonts.poppins(fontSize: regularSize);
+TextStyle medium = GoogleFonts.poppins(fontSize: mediumSize);
+TextStyle base = GoogleFonts.poppins(fontSize: baseSize);
+TextStyle mega = GoogleFonts.poppins(fontSize: megaSize);
+TextStyle extra = GoogleFonts.poppins(fontSize: extraSize);
+TextStyle mass = GoogleFonts.poppins(fontSize: massSize);

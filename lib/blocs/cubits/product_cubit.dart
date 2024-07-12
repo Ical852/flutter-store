@@ -118,7 +118,7 @@ class ProductCubit extends Cubit<ProductBlocModel> {
       }
 
       List<dynamic> pages = [];
-      for (int i = 1; i <= (products.length / limit).round(); i++) {
+      for (int i = 1; i <= (products.length / limit).ceil(); i++) {
         pages.add(i);
       }
       newState.pagination.lastPage = pages[pages.length - 1];

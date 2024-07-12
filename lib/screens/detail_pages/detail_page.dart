@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutterstore/functions/global_func.dart';
 import 'package:flutterstore/models/product_model.dart';
-import 'package:flutterstore/screens/edit_pages/product/edit_product_page.dart';
+import 'package:flutterstore/screens/detail_pages/partials/bottom_action.dart';
 import 'package:flutterstore/shared/constants.dart';
 import 'package:flutterstore/shared/text_styles.dart';
 import 'package:flutterstore/view_models/detail_pages/detail_view_model.dart';
 import 'package:flutterstore/widgets/badge_custom.dart';
 import 'package:flutterstore/widgets/buttons/circle_button.dart';
-import 'package:flutterstore/widgets/buttons/mini_button_custom.dart';
 import 'package:flutterstore/widgets/header.dart';
 import 'package:flutterstore/widgets/image_custom.dart';
 
@@ -25,37 +24,10 @@ class _DetailPageState extends State<DetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    Widget BottomAction() {
-      return Align(
-        alignment: Alignment.bottomCenter,
-        child: Container(
-          height: 70,
-          padding: EdgeInsets.symmetric(horizontal: 24),
-          decoration:
-              BoxDecoration(color: whiteColor, boxShadow: [getBoxShadow(9)]),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                moneyFormat(widget.product.price),
-                style: mega.primary.semiBold,
-              ),
-              MiniButtonCustom(
-                width: 165,
-                height: 40,
-                title: "Edit Product",
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              EditProductPage(widget.product)));
-                },
-              )
-            ],
-          ),
-        ),
-      );
+    var product = this.widget.product;
+
+    Widget BottomActionContent() {
+      return BottomAction(product: product);
     }
 
     Widget MainContent(context) {
@@ -85,32 +57,55 @@ class _DetailPageState extends State<DetailPage> {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
-                        SizedBox(
-                          height: 3,
-                        ),
-                        BadgeCustom(title: this.widget.product.category.name)
+                        SizedBox(height: 3),
+                        BadgeCustom(title: product.category.name)
                       ],
                     ),
                   ),
-                  SizedBox(
-                    width: 12,
-                  ),
+                  SizedBox(width: 12),
                   CircleButton(onPressed: () {
                     showConfirm(
                       context,
                       "Are you sure wnat to delete this product?",
                       (){
-                        detailVM.deleteProduct(this.widget.product.id, context);
+                        detailVM.deleteProduct(product.id, context);
                       },
                       (){}
                     );
                   })
                 ],
               ),
-              Container(),
-              SizedBox(
-                height: 172,
+              SizedBox(height: 24,),
+              Text(
+                "Description",
+                style: regular.black1S.mediumF,
               ),
+              SizedBox(height: 8,),
+              Text(
+                product.desc,
+                style: regular.grey1S.light,
+              ),
+              SizedBox(height: 20,),
+              Text(
+                "Width | Height | Length | Weight",
+                style: regular.black1S.mediumF,
+              ),
+              SizedBox(height: 8,),
+              Text(
+                "${product.width.toString()}cm | ${product.height.toString()}cm | ${product.length.toString()}cm | ${product.weight.toString()}kg",
+                style: regular.grey1S.light,
+              ),
+              SizedBox(height: 20,),
+              Text(
+                "Sku",
+                style: regular.black1S.mediumF,
+              ),
+              SizedBox(height: 8,),
+              Text(
+                "${product.sku}",
+                style: regular.grey1S.light,
+              ),
+              SizedBox(height: 172),
             ],
           ),
         ),
@@ -124,10 +119,14 @@ class _DetailPageState extends State<DetailPage> {
           child: Stack(
             children: [
               Container(
-                  margin: EdgeInsets.symmetric(horizontal: 24, vertical: 32),
-                  child: Header(title: "Product Detail")),
+                margin: EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 32
+                ),
+                child: Header(title: "Product Detail")
+              ),
               MainContent(context),
-              BottomAction(),
+              BottomActionContent(),
             ],
           ),
         ),
