@@ -113,6 +113,7 @@ class _CategoryTabState extends State<CategoryTab> {
                 setState(() {
                   categoryVM.deleteCategory(category);
                 });
+                Navigator.of(context).pop(false);
               }, () {});
             },
           );

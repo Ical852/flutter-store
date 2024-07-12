@@ -48,7 +48,7 @@ class CategoryCard extends StatelessWidget {
               ),
               SizedBox(width: 12),
               MiniButtonCustom(
-                width: 100,
+                width: 120,
                 height: 34,
                 title: "Update",
                 onPressed: () {
