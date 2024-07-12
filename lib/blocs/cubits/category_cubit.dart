@@ -22,6 +22,17 @@ class CategoryCubit extends Cubit<CategoryBlocModel> {
     }
   }
 
+  bool resetFilter() {
+    try {
+      var newState = state;
+      newState.filtered = [];
+      emit(newState);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
   bool setCurrent(CategoryModel category) {
     try {
       var newState = state;

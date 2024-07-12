@@ -15,6 +15,7 @@ class AddProductViewModel {
     try {
       context.read<ProductCubit>().submitProduct(product);
       showGLobalAlert("success", "Success to create new product", context);
+      context.read<ProductCubit>().resetPagination();
       Navigator.pushNamedAndRemoveUntil(context, "/main", (route) => false);
     } catch (e) {
       showGLobalAlert("danger", "Failed to create new product", context);

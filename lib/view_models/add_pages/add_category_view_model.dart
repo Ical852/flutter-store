@@ -15,6 +15,7 @@ class AddCategoryViewModel {
     try {
       context.read<CategoryCubit>().submitCategory(category);
       showGLobalAlert("success", "Success to create new category", context);
+      context.read<CategoryCubit>().resetFilter();
       Navigator.pushNamedAndRemoveUntil(context, "/main", (route) => false);
     } catch (e) {
       showGLobalAlert("danger", "Failed to create new category", context);

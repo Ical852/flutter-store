@@ -15,6 +15,7 @@ class EditProductViewModel {
     try {
       context.read<ProductCubit>().editProduct(product, product.id);
       showGLobalAlert("success", "Success to update product", context);
+      context.read<ProductCubit>().resetPagination();
       Navigator.pushNamedAndRemoveUntil(context, "/main", (route) => false);
     } catch (e) {
       showGLobalAlert("danger", "Failed to update product", context);

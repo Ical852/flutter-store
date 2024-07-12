@@ -15,6 +15,7 @@ class EditCategoryViewModel {
     try {
       context.read<CategoryCubit>().editCategory(category, category.id);
       showGLobalAlert("success", "Success to update category", context);
+      context.read<CategoryCubit>().resetFilter();
       Navigator.pushNamedAndRemoveUntil(context, "/main", (route) => false);
     } catch (e) {
       showGLobalAlert("danger", "Failed to update category", context);
