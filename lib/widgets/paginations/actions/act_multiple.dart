@@ -7,6 +7,7 @@ import 'package:flutterstore/widgets/image_custom.dart';
 class ActMultiple extends StatelessWidget {
   String action = "end";
   Function() onPress;
+
   ActMultiple({
     super.key, 
     required this.action,
@@ -27,10 +28,10 @@ class ActMultiple extends StatelessWidget {
         height: 28,
         decoration: BoxDecoration(
           color: whiteColor,
+          borderRadius: BorderRadius.circular(4),
           border: Border.all(
             color: border,
           ),
-          borderRadius: BorderRadius.circular(4)
         ),
         child: Center(
           child: ImageCustom(

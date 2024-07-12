@@ -124,7 +124,6 @@ class _SearchPageState extends State<SearchPage> {
       return BlocConsumer<ProductCubit, ProductBlocModel>(
         listener: (context, state) {},
         builder: (context, state) {
-          print(state.resultProduct.products.length);
           if (state.resultProduct.products.length < 1) {
             return EmptyProducts(
               desc: "Oops, looks like something went wrong or what you're looking for isn't here...",

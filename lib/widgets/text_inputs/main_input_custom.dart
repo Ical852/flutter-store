@@ -30,9 +30,7 @@ class MainInputCustom extends StatelessWidget {
             title,
             style: regular.black.regularF,
           ),
-          SizedBox(
-            height: 6,
-          ),
+          SizedBox(height: 6),
           Opacity(
             opacity: enabled ? 1 : 0.7,
             child: TextFormField(
@@ -49,13 +47,12 @@ class MainInputCustom extends StatelessWidget {
                   borderSide: BorderSide(color: green3),
                   borderRadius: BorderRadius.circular(8)
                 ),
-                contentPadding:
-                  EdgeInsets.only(
-                    top: 13,
-                    bottom: 13,
-                    left: 21,
-                    right: 21
-                  ),
+                contentPadding: EdgeInsets.only(
+                  top: 13,
+                  bottom: 13,
+                  left: 21,
+                  right: 21
+                ),
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: green1

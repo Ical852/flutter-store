@@ -10,6 +10,7 @@ import 'package:flutterstore/widgets/image_custom.dart';
 class HomeCard extends StatelessWidget {
   ProductModel product;
   Function() onPress;
+  
   HomeCard({
     super.key,
     required this.product,

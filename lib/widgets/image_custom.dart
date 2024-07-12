@@ -39,11 +39,11 @@ class ImageCustom extends StatelessWidget {
             width: width,
             height: height,
             decoration: BoxDecoration(
+              borderRadius: borderRadius,
               image: DecorationImage(
                 image: imageProvider,
                 fit: fit
               ),
-              borderRadius: borderRadius
             ),
           );
         },
@@ -64,11 +64,11 @@ class ImageCustom extends StatelessWidget {
       width: width,
       height: height,
       decoration: BoxDecoration(
+        borderRadius: borderRadius,
         image: DecorationImage(
           image: image!,
           fit: fit
         ),
-        borderRadius: borderRadius
       ),
       child: child,
     );

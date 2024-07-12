@@ -9,7 +9,11 @@ class PriceItem extends StatelessWidget {
   Function() onPress;
   bool active;
 
-  PriceItem({required this.price, required this.onPress, this.active = false});
+  PriceItem({
+    required this.price,
+    required this.onPress,
+    this.active = false
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,18 +22,22 @@ class PriceItem extends StatelessWidget {
       child: Container(
         height: 58,
         decoration: BoxDecoration(
-            color: active ? green1 : whiteColor,
-            boxShadow: [
-              BoxShadow(
-                  color: blackColor.withOpacity(0.2),
-                  blurRadius: 2,
-                  offset: Offset(0, 2))
-            ],
-            borderRadius: BorderRadius.circular(8)),
+          color: active ? green1 : whiteColor,
+          borderRadius: BorderRadius.circular(8),
+          boxShadow: [
+            BoxShadow(
+              color: blackColor.withOpacity(0.2),
+              blurRadius: 2,
+              offset: Offset(0, 2)
+            )
+          ],
+        ),
         child: Center(
           child: Text(
             rawMoneyFormat(price),
-            style: mega.regularF.copyWith(color: active ? whiteColor : black1),
+            style: mega.regularF.copyWith(
+              color: active ? whiteColor : black1
+            ),
           ),
         ),
       ),

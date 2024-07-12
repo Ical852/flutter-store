@@ -48,9 +48,7 @@ class HomeHeader extends StatelessWidget {
           decoration: BoxDecoration(
             color: whiteColor,
             borderRadius: BorderRadius.circular(8),
-            boxShadow: [
-              getBoxShadow(2)
-            ],
+            boxShadow: [getBoxShadow(2)],
           ),
           child: Container(
             child: Row(

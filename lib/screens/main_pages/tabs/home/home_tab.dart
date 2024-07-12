@@ -118,31 +118,27 @@ class _HomeTabState extends State<HomeTab> {
             child: Column(
               children: [
                 RenderPagination(state),
-                SizedBox(
-                  height: 20,
-                ),
+                SizedBox(height: 20),
                 ListView.builder(
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemCount: state.resultProduct.products.length,
                   itemBuilder: (context, index) {
-                    var product = state.resultProduct.products[index];
+                    var product = state.resultProduct.products[index].product;
                     return HomeCard(
-                      product: product.product,
+                      product: product,
                       onPress: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => DetailPage(product.product)
+                            builder: (context) => DetailPage(product)
                           )
                         );
                       },
                     );
                   },
                 ),
-                SizedBox(
-                  height: 172,
-                ),
+                SizedBox(height: 172),
               ],
             ),
           );

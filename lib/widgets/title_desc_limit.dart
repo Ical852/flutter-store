@@ -36,9 +36,7 @@ class TitleDescLimit extends StatelessWidget {
               limit,
               style: regular.black1S.regularF,
             ),
-            SizedBox(
-              width: 10,
-            ),
+            SizedBox(width: 10),
             ImageCustom(
               height: 8,
               width: 16,

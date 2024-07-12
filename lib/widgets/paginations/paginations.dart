@@ -8,7 +8,8 @@ class Paginations extends StatelessWidget {
   dynamic current;
   List<dynamic> pages;
   Function() onLatest, onPrev, onNext, onEnd;
-  Function(int) onChangePage; 
+  Function(int) onChangePage;
+
   Paginations({
     super.key,
     required this.onLatest,
@@ -39,9 +40,7 @@ class Paginations extends StatelessWidget {
             action: "prev", 
             onPress: noPages() ? (){} :  onPrev
           ),
-          SizedBox(
-            width: 8,
-          ),
+          SizedBox(width: 8),
           Row(
             children: pages.map((page) {
               return Container(
@@ -64,9 +63,7 @@ class Paginations extends StatelessWidget {
             action: "next", 
             onPress: noPages() ? (){} :  onNext
           ),
-          SizedBox(
-            width: 8,
-          ),
+          SizedBox(width: 8),
           ActMultiple(
             action: "end",
             onPress: noPages() ? (){} :  onEnd

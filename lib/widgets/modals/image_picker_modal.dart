@@ -26,19 +26,20 @@ class ImagePickerModal extends StatelessWidget {
               margin: EdgeInsets.symmetric(horizontal: 12),
               child: Column(
                 children: [
-                  Text('Pilih Pengambilan Gambar',
-                      style: medium.black.semiBold),
-                  SizedBox(
-                    height: 8,
+                  Text(
+                    'Pilih Pengambilan Gambar',
+                    style: medium.black.semiBold
                   ),
+                  SizedBox(height: 8),
                   Text(
                     'Pilih Dari Mana Kamu Ingin Mengambil Gambar Kamu',
-                    style: regular.copyWith(fontSize: 13, color: black1),
                     textAlign: TextAlign.center,
+                    style: regular.copyWith(
+                      fontSize: 13,
+                      color: black1
+                    ),
                   ),
-                  SizedBox(
-                    height: 12,
-                  ),
+                  SizedBox(height: 12),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -47,9 +48,7 @@ class ImagePickerModal extends StatelessWidget {
                         title: 'Library',
                         onPress: onLibrary,
                       ),
-                      SizedBox(
-                        width: 8,
-                      ),
+                      SizedBox(width: 8),
                       MiniButtonIconCustom(
                         icon: Icons.camera_alt,
                         title: 'Camera',

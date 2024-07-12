@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutterstore/blocs/cubits/category_cubit.dart';
 import 'package:flutterstore/functions/global_func.dart';
-import 'package:flutterstore/models/category_bloc_model.dart';
 import 'package:flutterstore/models/product_model.dart';
+import 'package:flutterstore/screens/add_pages/product/partials/category_input.dart';
+import 'package:flutterstore/screens/add_pages/product/partials/price_input.dart';
 import 'package:flutterstore/screens/edit_pages/product/partials/category_drawer.dart';
 import 'package:flutterstore/screens/edit_pages/product/partials/price_drawer.dart';
-import 'package:flutterstore/shared/text_styles.dart';
 import 'package:flutterstore/view_models/edit_pages/edit_product_view_model.dart';
 import 'package:flutterstore/widgets/buttons/main_button_custom.dart';
 import 'package:flutterstore/widgets/header.dart';
-import 'package:flutterstore/widgets/image_custom.dart';
-import 'package:flutterstore/widgets/text_inputs/input_with_button_custom.dart';
 import 'package:flutterstore/widgets/text_inputs/main_input_custom.dart';
 import '../../../../shared/constants.dart';
 
@@ -139,6 +135,7 @@ class _EditProductPageState extends State<EditProductPage> {
       return category == cat;
     }
     void setCategory(cat, setState) {
+      _validateInput();
       this.setState(() {
         category = cat;
       });
@@ -177,53 +174,17 @@ class _EditProductPageState extends State<EditProductPage> {
       editProductVM.updateProduct(product);
     }
 
-    Widget CategoryInput(context) {
-      return BlocConsumer<CategoryCubit, CategoryBlocModel>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          return Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Product Category',
-                  style: regular.black.regularF
-                ),
-                GestureDetector(
-                  onTap: () => showCategoryDrawer(state),
-                  child: Container(
-                    height: 50,
-                    margin: EdgeInsets.only(top: 6),
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: green3),
-                      borderRadius: BorderRadius.circular(8)
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          category.name,
-                          style: medium.black.regularF
-                        ),
-                        ImageCustom(
-                          height: 8,
-                          width: 16,
-                          image: AssetImage('assets/icons/ic_down.png'),
-                        )
-                      ],
-                    ),
-                  ),
-                )
-              ],
-            ),
-          );
-        },
+    Widget CategoryInputContent() {
+      return CategoryInput(
+        category: category,
+        showCategoryDrawer: showCategoryDrawer
       );
     }
 
-    Widget PriceInput() {
-      return InputWithButtonCustom(
+    Widget PriceInputContent() {
+      return PriceInput(
+        productPriceController: productPriceController,
+        showPriceDrawer: showPriceDrawer,
         onChanged: (value) {
           this.setState(() {
             if (value.isNotEmpty) {
@@ -231,16 +192,6 @@ class _EditProductPageState extends State<EditProductPage> {
             }
           });
         },
-        inputType: TextInputType.number,
-        title: "Product Price",
-        hint: "Input Product Price",
-        controller: productPriceController,
-        onPress: () => showPriceDrawer(),
-        iconContent: ImageCustom(
-          height: 21,
-          width: 21,
-          image: AssetImage('assets/icons/ic_money.png'),
-        ),
       );
     }
 
@@ -274,9 +225,9 @@ class _EditProductPageState extends State<EditProductPage> {
                           controller: productDescController,
                         ),
                         SizedBox(height: 20),
-                        PriceInput(),
+                        PriceInputContent(),
                         SizedBox(height: 20),
-                        CategoryInput(context),
+                        CategoryInputContent(),
                         SizedBox(height: 20),
                         MainInputCustom(
                           title: "Image Url",

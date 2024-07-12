@@ -7,13 +7,14 @@ class RowPriceItem extends StatelessWidget {
   bool leftActive, rightActive;
   Function() onLeft, onRight;
 
-  RowPriceItem(
-      {required this.leftPrice,
-      required this.rightPrice,
-      this.leftActive = false,
-      this.rightActive = false,
-      required this.onLeft,
-      required this.onRight});
+  RowPriceItem({
+    required this.leftPrice,
+    required this.rightPrice,
+    this.leftActive = false,
+    this.rightActive = false,
+    required this.onLeft,
+    required this.onRight}
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -22,20 +23,20 @@ class RowPriceItem extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-              child: PriceItem(
-            price: leftPrice,
-            onPress: onLeft,
-            active: leftActive,
-          )),
-          SizedBox(
-            width: 7,
+            child: PriceItem(
+              price: leftPrice,
+              onPress: onLeft,
+              active: leftActive,
+            )
           ),
+          SizedBox(width: 7),
           Expanded(
-              child: PriceItem(
-            price: rightPrice,
-            onPress: onRight,
-            active: rightActive,
-          )),
+            child: PriceItem(
+              price: rightPrice,
+              onPress: onRight,
+              active: rightActive,
+            )
+          ),
         ],
       ),
     );

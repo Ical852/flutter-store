@@ -7,7 +7,12 @@ import 'package:flutterstore/widgets/image_custom.dart';
 class Header extends StatelessWidget {
   String title;
   Function()? onBack;
-  Header({super.key, this.onBack, required this.title});
+
+  Header({
+    super.key,
+    this.onBack,
+    required this.title
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +25,6 @@ class Header extends StatelessWidget {
               if (onBack != null) {
                 onBack!();
               }
-              ;
               Navigator.pop(context);
             },
             child: ImageCustom(
@@ -33,9 +37,7 @@ class Header extends StatelessWidget {
             title,
             style: regular.black1S.semiBold,
           ),
-          SizedBox(
-            width: 24,
-          )
+          SizedBox(width: 24)
         ],
       ),
     );

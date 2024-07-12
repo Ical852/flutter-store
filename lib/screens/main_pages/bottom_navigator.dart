@@ -19,25 +19,29 @@ class BottomNavigator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget UploadButton() {
+    Widget CreateButton() {
       return Align(
         alignment: Alignment.bottomCenter,
         child: Container(
           margin: EdgeInsets.only(bottom: 8),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(50),
-              gradient: LinearGradient(
-                  colors: [green2, green1],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter)),
+            borderRadius: BorderRadius.circular(50),
+            gradient: LinearGradient(
+              colors: [green2, green1],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter
+            )
+          ),
           width: 80,
           height: 80,
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.transparent,
-                shadowColor: Colors.transparent.withOpacity(0.1),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50))),
+              backgroundColor: Colors.transparent,
+              shadowColor: Colors.transparent.withOpacity(0.1),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50)
+              )
+            ),
             onPressed: onUp,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -62,12 +66,16 @@ class BottomNavigator extends StatelessWidget {
         child: Container(
           width: double.infinity,
           height: 70,
-          decoration: BoxDecoration(color: whiteColor, boxShadow: [
-            BoxShadow(
+          decoration: BoxDecoration(
+            color: whiteColor,
+            boxShadow: [
+              BoxShadow(
                 color: blackColor.withOpacity(0.9),
                 blurRadius: 9,
-                offset: Offset(0, 9))
-          ]),
+                offset: Offset(0, 9)
+              )
+            ]
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -76,9 +84,7 @@ class BottomNavigator extends StatelessWidget {
                 onPress: () => onPress('home'),
                 active: currentPage == 'home',
               ),
-              Container(
-                width: 80,
-              ),
+              Container(width: 80),
               MenuItemCustom(
                 icon: 'category',
                 onPress: () => onPress('category'),
@@ -96,7 +102,7 @@ class BottomNavigator extends StatelessWidget {
       child: Stack(
         children: [
           MenuItems(),
-          UploadButton(),
+          CreateButton(),
         ],
       ),
     );

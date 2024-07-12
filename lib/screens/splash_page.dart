@@ -37,9 +37,7 @@ class _SplashPageState extends State<SplashPage> {
                   width: 120,
                   image: AssetImage(getIM("im_logo.png")),
                 ),
-                SizedBox(
-                  height: 16,
-                ),
+                SizedBox(height: 16),
                 Text(
                   "Klontong",
                   style: mass.white.semiBold,

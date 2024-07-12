@@ -27,9 +27,7 @@ class CategoryList extends StatelessWidget {
             return Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SizedBox(
-                  width: 24,
-                ),
+                SizedBox(width: 24),
                 CategoryItem(
                   title: "All Products",
                   current: state.current.name,
@@ -44,9 +42,7 @@ class CategoryList extends StatelessWidget {
                     );
                   }).toList(),
                 ),
-                SizedBox(
-                  width: 8,
-                ),
+                SizedBox(width: 8),
               ],
             );
           },

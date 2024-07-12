@@ -12,27 +12,25 @@ class CreateDrawer extends StatelessWidget {
       child: Column(
         children: [
           DrawerTitleDesc(
-              title: "Create Product or Category",
-              desc:
-                  "Choose what you want to create, choose product to create product, choose category to create category"),
-          SizedBox(
-            height: 24,
+            title: "Create Product or Category",
+            desc: "Choose what you want to create, choose product to create product, choose category to create category"
           ),
+          SizedBox(height: 24),
           MainButtonCustom(
-              onPressed: () {
-                Navigator.pop(context);
-                Navigator.pushNamed(context, "/add-category");
-              },
-              title: "Create Category"),
-          SizedBox(
-            height: 16,
+            title: "Create Category",
+            onPressed: () {
+              Navigator.pop(context);
+              Navigator.pushNamed(context, "/add-category");
+            },
           ),
+          SizedBox(height: 16),
           MainButtonCustom(
-              onPressed: () {
-                Navigator.pop(context);
-                Navigator.pushNamed(context, "/add-product");
-              },
-              title: "Create Product"),
+            title: "Create Product",
+            onPressed: () {
+              Navigator.pop(context);
+              Navigator.pushNamed(context, "/add-product");
+            },
+          ),
         ],
       ),
     );

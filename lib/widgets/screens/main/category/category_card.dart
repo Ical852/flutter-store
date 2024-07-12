@@ -11,7 +11,12 @@ import 'package:flutterstore/widgets/image_custom.dart';
 class CategoryCard extends StatelessWidget {
   Function(CategoryModel) onDelete;
   CategoryModel category;
-  CategoryCard({super.key, required this.category, required this.onDelete});
+
+  CategoryCard({
+    super.key,
+    required this.category,
+    required this.onDelete
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +25,10 @@ class CategoryCard extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 8, horizontal: 24),
       height: 70,
       decoration: BoxDecoration(
-          color: whiteColor,
-          borderRadius: BorderRadius.circular(8),
-          boxShadow: [getBoxShadow(2)]),
+        color: whiteColor,
+        borderRadius: BorderRadius.circular(8),
+        boxShadow: [getBoxShadow(2)]
+      ),
       child: Row(
         children: [
           Text(
@@ -40,19 +46,20 @@ class CategoryCard extends StatelessWidget {
                   image: AssetImage(getIC("ic_delete.png")),
                 ),
               ),
-              SizedBox(
-                width: 12,
-              ),
+              SizedBox(width: 12),
               MiniButtonCustom(
-                  width: 100,
-                  height: 34,
-                  title: "Update",
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => EditCategoryPage(category)));
-                  })
+                width: 100,
+                height: 34,
+                title: "Update",
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => EditCategoryPage(category)
+                    )
+                  );
+                }
+              )
             ],
           )
         ],

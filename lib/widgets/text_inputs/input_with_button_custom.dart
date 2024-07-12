@@ -30,49 +30,49 @@ class InputWithButtonCustom extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(title, style: regular.black.regularF),
-          SizedBox(
-            height: 6,
-          ),
+          SizedBox(height: 6),
           Container(
             height: 50,
-            child: Stack(children: [
-              TextFormField(
-                onChanged: onChanged,
-                keyboardType: inputType,
-                controller: controller,
-                obscureText: password,
-                style: medium.black.regularF,
-                decoration: InputDecoration(
-                  hintText: hint,
-                  hintStyle: medium.green3S.regularF,
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: green3),
-                    borderRadius: BorderRadius.circular(8)
-                  ),
-                  contentPadding: EdgeInsets.only(
-                    top: 13,
-                    bottom: 13,
-                    left: 21,
-                    right: 56
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: green1),
-                    borderRadius: BorderRadius.circular(8)
-                  ),
-                ),
-              ),
-              GestureDetector(
-                onTap: onPress,
-                child: Container(
-                  margin: EdgeInsets.only(right: 18),
-                  height: double.infinity,
-                  child: Align(
-                    alignment: Alignment.centerRight,
-                    child: iconContent,
+            child: Stack(
+              children: [
+                TextFormField(
+                  onChanged: onChanged,
+                  keyboardType: inputType,
+                  controller: controller,
+                  obscureText: password,
+                  style: medium.black.regularF,
+                  decoration: InputDecoration(
+                    hintText: hint,
+                    hintStyle: medium.green3S.regularF,
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: green3),
+                      borderRadius: BorderRadius.circular(8)
+                    ),
+                    contentPadding: EdgeInsets.only(
+                      top: 13,
+                      bottom: 13,
+                      left: 21,
+                      right: 56
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: green1),
+                      borderRadius: BorderRadius.circular(8)
+                    ),
                   ),
                 ),
-              )
-            ]),
+                GestureDetector(
+                  onTap: onPress,
+                  child: Container(
+                    margin: EdgeInsets.only(right: 18),
+                    height: double.infinity,
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: iconContent,
+                    ),
+                  ),
+                )
+              ]
+            ),
           )
         ],
       ),

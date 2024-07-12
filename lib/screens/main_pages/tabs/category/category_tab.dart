@@ -39,28 +39,32 @@ class _CategoryTabState extends State<CategoryTab> {
   Widget build(BuildContext context) {
     Widget RenderEmpty() {
       return Container(
-          margin: EdgeInsets.only(top: 128, bottom: 128),
-          child: EmptyCategory());
+        margin: EdgeInsets.only(top: 128, bottom: 128),
+        child: EmptyCategory()
+      );
     }
 
     Widget SearchBar() {
       return Container(
         height: 50,
         decoration: BoxDecoration(
-            color: whiteColor,
-            boxShadow: [getBoxShadow(1.5)],
-            borderRadius: BorderRadius.circular(8)),
+          color: whiteColor,
+          boxShadow: [getBoxShadow(1.5)],
+          borderRadius: BorderRadius.circular(8)
+        ),
         margin: EdgeInsets.symmetric(horizontal: 24),
         child: Stack(
           children: [
             TextFormField(
-              decoration: InputDecoration(
-                  labelText: "Search Categories",
-                  labelStyle:
-                      regular.regularF.copyWith(color: black1.withOpacity(0.4)),
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.symmetric(horizontal: 14)),
               controller: searchController,
+              decoration: InputDecoration(
+                labelText: "Search Categories",
+                border: InputBorder.none,
+                contentPadding: EdgeInsets.symmetric(horizontal: 14),
+                labelStyle: regular.regularF.copyWith(
+                  color: black1.withOpacity(0.4)
+                ),
+              ),
             ),
             Align(
               alignment: Alignment.centerRight,
@@ -84,35 +88,36 @@ class _CategoryTabState extends State<CategoryTab> {
           horizontal: 24,
         ),
         child: TitleDescLimit(
-            isEmpty: true,
-            title: "All Categories",
-            desc: "All product categories from klontong store",
-            limit: "",
-            onPress: () {}),
+          isEmpty: true,
+          title: "All Categories",
+          desc: "All product categories from klontong store",
+          limit: "",
+          onPress: () {}
+        ),
       );
     }
 
     Widget CategoryList(CategoryBlocModel state) {
-      var categories =
-          state.filtered.length > 0 ? state.filtered : state.categories;
+      var categories = state.filtered.length > 0 ? state.filtered : state.categories;
 
       return ListView.builder(
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          itemCount: categories.length,
-          itemBuilder: (context, index) {
-            var category = categories[index];
-            return CategoryCard(
-              category: category,
-              onDelete: (category) {
-                showConfirm(context, confirm, () {
-                  setState(() {
-                    categoryVM.deleteCategory(category);
-                  });
-                }, () {});
-              },
-            );
-          });
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        itemCount: categories.length,
+        itemBuilder: (context, index) {
+          var category = categories[index];
+          return CategoryCard(
+            category: category,
+            onDelete: (category) {
+              showConfirm(context, confirm, () {
+                setState(() {
+                  categoryVM.deleteCategory(category);
+                });
+              }, () {});
+            },
+          );
+        }
+      );
     }
 
     Widget MainContent() {
@@ -123,17 +128,11 @@ class _CategoryTabState extends State<CategoryTab> {
           return Container(
             child: Column(
               children: [
-                SizedBox(
-                  height: 16,
-                ),
+                SizedBox(height: 16),
                 SearchBar(),
-                SizedBox(
-                  height: 24,
-                ),
+                SizedBox(height: 24),
                 CategoriesTitle(),
-                SizedBox(
-                  height: 8,
-                ),
+                SizedBox(height: 8),
                 CategoryList(state),
               ],
             ),
@@ -148,17 +147,13 @@ class _CategoryTabState extends State<CategoryTab> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
-              height: 32,
-            ),
+            SizedBox(height: 32),
             Text(
               "Categories",
               style: regular.black1S.semiBold,
             ),
             MainContent(),
-            SizedBox(
-              height: 172,
-            ),
+            SizedBox(height: 172),
           ],
         ),
       ),

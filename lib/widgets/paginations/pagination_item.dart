@@ -32,10 +32,10 @@ class PaginationItem extends StatelessWidget {
         height: isCurrent() ? 32 : 28,
         decoration: BoxDecoration(
           color: isCurrent() ? green1 : whiteColor,
+          borderRadius: BorderRadius.circular(4),
           border: Border.all(
             color: border,
           ),
-          borderRadius: BorderRadius.circular(4)
         ),
         child: Center(
           child: Text(

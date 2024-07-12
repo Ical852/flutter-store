@@ -8,8 +8,11 @@ class MainButtonCustom extends StatelessWidget {
   String title;
   bool disabled;
 
-  MainButtonCustom(
-      {required this.onPressed, required this.title, this.disabled = false});
+  MainButtonCustom({
+    required this.onPressed,
+    required this.title,
+    this.disabled = false
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +20,9 @@ class MainButtonCustom extends StatelessWidget {
       opacity: disabled ? 0.3 : 1,
       child: Container(
         decoration: BoxDecoration(
-            color: green1, borderRadius: BorderRadius.circular(8)),
+          color: green1,
+          borderRadius: BorderRadius.circular(8)
+        ),
         width: double.infinity,
         height: 50,
         child: ElevatedButton(
@@ -26,7 +31,10 @@ class MainButtonCustom extends StatelessWidget {
             shadowColor: Colors.transparent.withOpacity(0.1),
           ),
           onPressed: disabled ? () {} : onPressed,
-          child: Text(title, style: medium.white.mediumF),
+          child: Text(
+            title,
+            style: medium.white.mediumF
+          ),
         ),
       ),
     );

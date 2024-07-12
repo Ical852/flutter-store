@@ -53,45 +53,47 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
     return Scaffold(
       backgroundColor: whiteColor,
       body: SafeArea(
-        child: Stack(children: [
-          Container(
-            child: Column(
-              children: [
-                Expanded(
-                  child: Container(
-                    margin: EdgeInsets.only(
-                      left: 24,
-                      right: 24,
+        child: Stack(
+          children: [
+            Container(
+              child: Column(
+                children: [
+                  Expanded(
+                    child: Container(
+                      margin: EdgeInsets.only(
+                        left: 24,
+                        right: 24,
+                      ),
+                      child: ListView(
+                        children: [
+                          SizedBox(height: 30),
+                          Header(title: "Create Category"),
+                          SizedBox(height: 32),
+                          MainInputCustom(
+                            title: "Category Name",
+                            hint: "Input category name",
+                            controller: categoryNameController,
+                          ),
+                          SizedBox(height: 20),
+                          MainButtonCustom(
+                            title: 'Create Category',
+                            onPressed: () {
+                              setState(() {
+                                createCategory();
+                              });
+                            },
+                            disabled: isButtonDisabled
+                          ),
+                          SizedBox(height: 120)
+                        ],
+                      ),
                     ),
-                    child: ListView(
-                      children: [
-                        SizedBox(height: 30),
-                        Header(title: "Create Category"),
-                        SizedBox(height: 32),
-                        MainInputCustom(
-                          title: "Category Name",
-                          hint: "Input category name",
-                          controller: categoryNameController,
-                        ),
-                        SizedBox(height: 20),
-                        MainButtonCustom(
-                          title: 'Create Category',
-                          onPressed: () {
-                            setState(() {
-                              createCategory();
-                            });
-                          },
-                          disabled: isButtonDisabled
-                        ),
-                        SizedBox(height: 120)
-                      ],
-                    ),
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
-          ),
-        ]),
+          ]
+        ),
       ),
     );
   }

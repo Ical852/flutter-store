@@ -17,16 +17,12 @@ class EmptyCategory extends StatelessWidget {
             width: 250,
             image: AssetImage(getIL("il_no_categories.png")),
           ),
-          SizedBox(
-            height: 16,
-          ),
+          SizedBox(height: 16),
           Text(
             "Ups, No Categories",
             style: mega.black1S.semiBold,
           ),
-          SizedBox(
-            height: 6,
-          ),
+          SizedBox(height: 6),
           Container(
             width: 270,
             child: Text(
@@ -35,9 +31,7 @@ class EmptyCategory extends StatelessWidget {
               style: regular.grey1S.light,
             ),
           ),
-          SizedBox(
-            height: 24,
-          ),
+          SizedBox(height: 24),
           MiniButtonCustom(
             title: "Create Category",
             onPressed: () => Navigator.pushNamed(context, "/add-category"),

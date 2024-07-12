@@ -8,25 +8,27 @@ class CategoryInputItem extends StatelessWidget {
   String title;
   bool active;
   Function() onPress;
-  CategoryInputItem(
-      {required this.title, required this.onPress, this.active = false});
+
+  CategoryInputItem({
+    required this.title,
+    required this.onPress,
+    this.active = false
+  });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onPress,
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 24),
         height: 45,
+        padding: EdgeInsets.symmetric(horizontal: 24),
         color: active ? green7.withOpacity(0.3) : whiteColor,
         child: Row(
           children: [
             CircleIndicator(
               active: active,
             ),
-            SizedBox(
-              width: 12,
-            ),
+            SizedBox(width: 12),
             Text(title, style: medium.black.regularF)
           ],
         ),

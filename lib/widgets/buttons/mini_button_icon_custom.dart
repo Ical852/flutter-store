@@ -8,14 +8,19 @@ class MiniButtonIconCustom extends StatelessWidget {
   Function() onPress;
   IconData icon;
 
-  MiniButtonIconCustom(
-      {required this.title, required this.onPress, required this.icon});
+  MiniButtonIconCustom({
+    required this.title,
+    required this.onPress, 
+    required this.icon
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration:
-          BoxDecoration(borderRadius: BorderRadius.circular(8), color: green1),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        color: green1
+      ),
       height: 40,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
@@ -26,10 +31,11 @@ class MiniButtonIconCustom extends StatelessWidget {
         child: Row(
           children: [
             Icon(icon),
-            SizedBox(
-              width: 8,
+            SizedBox(width: 8),
+            Text(
+              title,
+              style: regular.white.mediumF
             ),
-            Text(title, style: regular.white.mediumF),
           ],
         ),
       ),

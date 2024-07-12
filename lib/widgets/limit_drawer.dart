@@ -35,9 +35,7 @@ class LimitDrawer extends StatelessWidget {
                 title: 'Choose Limit',
                 desc: 'You can set your products pagination limit with the value down below',
               ),
-              SizedBox(
-                height: 24,
-              ),
+              SizedBox(height: 24),
               Column(
                 children: limits.map((limit) {
                   return RowPriceItem(

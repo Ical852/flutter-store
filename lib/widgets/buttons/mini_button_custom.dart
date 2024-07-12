@@ -18,8 +18,10 @@ class MiniButtonCustom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration:
-          BoxDecoration(borderRadius: BorderRadius.circular(8), color: green1),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        color: green1
+      ),
       width: width ?? 200,
       height: height ?? 50,
       child: ElevatedButton(
@@ -28,7 +30,10 @@ class MiniButtonCustom extends StatelessWidget {
           shadowColor: Colors.transparent.withOpacity(0.1),
         ),
         onPressed: onPressed,
-        child: Text(title, style: medium.white.mediumF),
+        child: Text(
+          title,
+          style: medium.white.mediumF
+        ),
       ),
     );
   }

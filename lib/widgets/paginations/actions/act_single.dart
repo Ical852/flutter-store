@@ -7,6 +7,7 @@ import 'package:flutterstore/widgets/image_custom.dart';
 class ActSingle extends StatelessWidget {
   String action = "prev";
   Function() onPress;
+
   ActSingle({
     super.key, 
     required this.action,
@@ -27,10 +28,10 @@ class ActSingle extends StatelessWidget {
         height: 28,
         decoration: BoxDecoration(
           color: whiteColor,
+          borderRadius: BorderRadius.circular(4),
           border: Border.all(
             color: border,
           ),
-          borderRadius: BorderRadius.circular(4)
         ),
         child: Center(
           child: ImageCustom(
