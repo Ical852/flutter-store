@@ -1,10 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutterstore/functions/global_func.dart';
 import 'package:flutterstore/models/category_bloc_model.dart';
 import 'package:flutterstore/models/category_model.dart';
-
-part '../states/category_state.dart';
 
 class CategoryCubit extends Cubit<CategoryBlocModel> {
   CategoryCubit() : super(generateCategory());

@@ -13,8 +13,8 @@ class RowPriceItem extends StatelessWidget {
     this.leftActive = false,
     this.rightActive = false,
     required this.onLeft,
-    required this.onRight}
-  );
+    required this.onRight,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class RowPriceItem extends StatelessWidget {
               price: leftPrice,
               onPress: onLeft,
               active: leftActive,
-            )
+            ),
           ),
           SizedBox(width: 7),
           Expanded(
@@ -35,7 +35,7 @@ class RowPriceItem extends StatelessWidget {
               price: rightPrice,
               onPress: onRight,
               active: rightActive,
-            )
+            ),
           ),
         ],
       ),

@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           "/main": (context) => MainPage(),
           "/add-category": (context) => AddCategoryPage(),
           "/add-product": (context) => AddProductPage(),
-          "/search": (context) => SearchPage()
+          "/search": (context) => SearchPage(),
         },
         initialRoute: "/",
         onGenerateRoute: (settings) {

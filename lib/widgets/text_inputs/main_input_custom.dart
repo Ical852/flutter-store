@@ -17,7 +17,7 @@ class MainInputCustom extends StatelessWidget {
     required this.controller,
     this.inputType = TextInputType.text,
     this.onChanged,
-    this.enabled = true
+    this.enabled = true,
   });
 
   @override
@@ -45,23 +45,21 @@ class MainInputCustom extends StatelessWidget {
                 hintStyle: medium.green3S.regularF,
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: green3),
-                  borderRadius: BorderRadius.circular(8)
+                  borderRadius: BorderRadius.circular(8),
                 ),
                 contentPadding: EdgeInsets.only(
                   top: 13,
                   bottom: 13,
                   left: 21,
-                  right: 21
+                  right: 21,
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: green1
-                  ),
-                  borderRadius: BorderRadius.circular(8)
+                  borderSide: BorderSide(color: green1),
+                  borderRadius: BorderRadius.circular(8),
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );

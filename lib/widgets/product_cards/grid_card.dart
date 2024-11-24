@@ -26,7 +26,7 @@ class GridCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: whiteColor,
           boxShadow: [getBoxShadow(2.5)],
-          borderRadius: BorderRadius.circular(8)
+          borderRadius: BorderRadius.circular(8),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,7 +39,7 @@ class GridCard extends StatelessWidget {
               image: NetworkImage(product.image),
             ),
             BadgeCustom(title: product.category.name),
-            SizedBox(height: 5,),
+            SizedBox(height: 5),
             Text(
               product.name,
               style: small.black1S.semiBold,
@@ -50,7 +50,7 @@ class GridCard extends StatelessWidget {
             Text(
               moneyFormat(product.price),
               style: regular.primary.semiBold,
-            )
+            ),
           ],
         ),
       ),

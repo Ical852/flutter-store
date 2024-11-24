@@ -15,7 +15,7 @@ class CategoryCard extends StatelessWidget {
   CategoryCard({
     super.key,
     required this.category,
-    required this.onDelete
+    required this.onDelete,
   });
 
   @override
@@ -27,7 +27,7 @@ class CategoryCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: whiteColor,
         borderRadius: BorderRadius.circular(8),
-        boxShadow: [getBoxShadow(2)]
+        boxShadow: [getBoxShadow(2)],
       ),
       child: Row(
         children: [
@@ -55,13 +55,13 @@ class CategoryCard extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => EditCategoryPage(category)
-                    )
+                      builder: (context) => EditCategoryPage(category),
+                    ),
                   );
                 }
-              )
+              ),
             ],
-          )
+          ),
         ],
       ),
     );

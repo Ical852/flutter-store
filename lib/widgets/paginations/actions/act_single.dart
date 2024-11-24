@@ -29,9 +29,7 @@ class ActSingle extends StatelessWidget {
         decoration: BoxDecoration(
           color: whiteColor,
           borderRadius: BorderRadius.circular(4),
-          border: Border.all(
-            color: border,
-          ),
+          border: Border.all(color: border),
         ),
         child: Center(
           child: ImageCustom(

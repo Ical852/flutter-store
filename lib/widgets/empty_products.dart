@@ -30,7 +30,7 @@ class EmptyProducts extends StatelessWidget {
             "Ups, Empty",
             style: mega.black1S.semiBold,
           ),
-          SizedBox(height: 6,),
+          SizedBox(height: 6),
           Container(
             width: 270,
             child: Text(
@@ -44,7 +44,7 @@ class EmptyProducts extends StatelessWidget {
             title: "Create Product",
             onPressed: () => Navigator.pushNamed(context, "/add-product"),
           ) : SizedBox(),
-          SizedBox(height: 172,),
+          SizedBox(height: 172),
         ],
       ),
     );

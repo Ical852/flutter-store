@@ -1,7 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
-
-part '../states/search_state.dart';
 
 class SearchCubit extends Cubit<List<String>> {
   SearchCubit() : super([]);

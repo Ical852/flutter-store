@@ -10,7 +10,7 @@ class CircleButton extends StatelessWidget {
 
   CircleButton({
     required this.onPressed,
-    this.disabled = false
+    this.disabled = false,
   });
 
   @override
@@ -20,7 +20,7 @@ class CircleButton extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: green1, 
-          borderRadius: BorderRadius.circular(50)
+          borderRadius: BorderRadius.circular(50),
         ),
         width: 50,
         height: 50,

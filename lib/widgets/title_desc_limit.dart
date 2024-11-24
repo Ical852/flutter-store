@@ -41,7 +41,7 @@ class TitleDescLimit extends StatelessWidget {
               height: 8,
               width: 16,
               image: AssetImage(getIC("ic_down.png")),
-            )
+            ),
           ],
         ),
       );
@@ -63,11 +63,11 @@ class TitleDescLimit extends StatelessWidget {
                   Text(
                     desc,
                     style: small.grey1S.regularF,
-                  )
+                  ),
                 ],
               ),
             ),
-            Toggle()
+            Toggle(),
           ],
         ),
       ),

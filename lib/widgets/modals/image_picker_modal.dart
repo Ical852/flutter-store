@@ -28,7 +28,7 @@ class ImagePickerModal extends StatelessWidget {
                 children: [
                   Text(
                     'Pilih Pengambilan Gambar',
-                    style: medium.black.semiBold
+                    style: medium.black.semiBold,
                   ),
                   SizedBox(height: 8),
                   Text(
@@ -36,7 +36,7 @@ class ImagePickerModal extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: regular.copyWith(
                       fontSize: 13,
-                      color: black1
+                      color: black1,
                     ),
                   ),
                   SizedBox(height: 12),
@@ -55,10 +55,10 @@ class ImagePickerModal extends StatelessWidget {
                         onPress: onCamera,
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),

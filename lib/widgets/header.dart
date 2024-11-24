@@ -11,7 +11,7 @@ class Header extends StatelessWidget {
   Header({
     super.key,
     this.onBack,
-    required this.title
+    required this.title,
   });
 
   @override
@@ -22,9 +22,7 @@ class Header extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
-              if (onBack != null) {
-                onBack!();
-              }
+              if (onBack != null) onBack!();
               Navigator.pop(context);
             },
             child: ImageCustom(
@@ -37,7 +35,7 @@ class Header extends StatelessWidget {
             title,
             style: regular.black1S.semiBold,
           ),
-          SizedBox(width: 24)
+          SizedBox(width: 24),
         ],
       ),
     );

@@ -24,7 +24,7 @@ class ImageCustom extends StatelessWidget {
     this.fit,
     this.child,
     this.network = false,
-    this.nwUrl
+    this.nwUrl,
   });
 
   @override
@@ -42,7 +42,7 @@ class ImageCustom extends StatelessWidget {
               borderRadius: borderRadius,
               image: DecorationImage(
                 image: imageProvider,
-                fit: fit
+                fit: fit,
               ),
             ),
           );
@@ -67,7 +67,7 @@ class ImageCustom extends StatelessWidget {
         borderRadius: borderRadius,
         image: DecorationImage(
           image: image!,
-          fit: fit
+          fit: fit,
         ),
       ),
       child: child,

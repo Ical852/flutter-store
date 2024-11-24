@@ -18,7 +18,7 @@ class DrawerTitleDesc extends StatelessWidget {
         children: [
           Text(title, style: medium.black1S.semiBold),
           SizedBox(height: 4),
-          Text(desc, style: small.black1S.regularF)
+          Text(desc, style: small.black1S.regularF),
         ],
       ),
     );

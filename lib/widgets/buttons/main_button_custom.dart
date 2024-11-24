@@ -11,7 +11,7 @@ class MainButtonCustom extends StatelessWidget {
   MainButtonCustom({
     required this.onPressed,
     required this.title,
-    this.disabled = false
+    this.disabled = false,
   });
 
   @override
@@ -21,7 +21,7 @@ class MainButtonCustom extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: green1,
-          borderRadius: BorderRadius.circular(8)
+          borderRadius: BorderRadius.circular(8),
         ),
         width: double.infinity,
         height: 50,
@@ -33,7 +33,7 @@ class MainButtonCustom extends StatelessWidget {
           onPressed: disabled ? () {} : onPressed,
           child: Text(
             title,
-            style: medium.white.mediumF
+            style: medium.white.mediumF,
           ),
         ),
       ),

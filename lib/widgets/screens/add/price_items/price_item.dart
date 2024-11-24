@@ -12,7 +12,7 @@ class PriceItem extends StatelessWidget {
   PriceItem({
     required this.price,
     required this.onPress,
-    this.active = false
+    this.active = false,
   });
 
   @override
@@ -28,15 +28,15 @@ class PriceItem extends StatelessWidget {
             BoxShadow(
               color: blackColor.withOpacity(0.2),
               blurRadius: 2,
-              offset: Offset(0, 2)
-            )
+              offset: Offset(0, 2),
+            ),
           ],
         ),
         child: Center(
           child: Text(
             rawMoneyFormat(price),
             style: mega.regularF.copyWith(
-              color: active ? whiteColor : black1
+              color: active ? whiteColor : black1,
             ),
           ),
         ),

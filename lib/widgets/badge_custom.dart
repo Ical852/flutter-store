@@ -12,7 +12,7 @@ class BadgeCustom extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(
         vertical: 3,
-        horizontal: 8
+        horizontal: 8,
       ),
       decoration: BoxDecoration(
         color: green1,

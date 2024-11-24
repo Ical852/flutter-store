@@ -20,7 +20,7 @@ class InputWithButtonCustom extends StatelessWidget {
     this.inputType = TextInputType.text,
     required this.iconContent,
     required this.onPress,
-    this.onChanged
+    this.onChanged,
   });
 
   @override
@@ -46,17 +46,17 @@ class InputWithButtonCustom extends StatelessWidget {
                     hintStyle: medium.green3S.regularF,
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: green3),
-                      borderRadius: BorderRadius.circular(8)
+                      borderRadius: BorderRadius.circular(8),
                     ),
                     contentPadding: EdgeInsets.only(
                       top: 13,
                       bottom: 13,
                       left: 21,
-                      right: 56
+                      right: 56,
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: green1),
-                      borderRadius: BorderRadius.circular(8)
+                      borderRadius: BorderRadius.circular(8),
                     ),
                   ),
                 ),
@@ -70,10 +70,10 @@ class InputWithButtonCustom extends StatelessWidget {
                       child: iconContent,
                     ),
                   ),
-                )
-              ]
+                ),
+              ],
             ),
-          )
+          ),
         ],
       ),
     );

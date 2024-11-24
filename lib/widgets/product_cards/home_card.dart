@@ -14,7 +14,7 @@ class HomeCard extends StatelessWidget {
   HomeCard({
     super.key,
     required this.product,
-    required this.onPress
+    required this.onPress,
   });
 
   @override
@@ -32,7 +32,7 @@ class HomeCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: whiteColor,
           borderRadius: BorderRadius.circular(12),
-          boxShadow: [getBoxShadow(2)]
+          boxShadow: [getBoxShadow(2)],
         ),
         child: Row(
           children: [
@@ -43,20 +43,20 @@ class HomeCard extends StatelessWidget {
               fit: BoxFit.cover,
               borderRadius: BorderRadius.circular(8),
             ),
-            SizedBox(width: 16,),
+            SizedBox(width: 16),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   BadgeCustom(title: product.category.name),
-                  SizedBox(height: 8,),
+                  SizedBox(height: 8),
                   Text(
                     product.name,
                     style: regular.black1S.semiBold,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                   ),
-                  SizedBox(height: 8,),
+                  SizedBox(height: 8),
                   Text(
                     product.desc,
                     style: small.grey1S.regularF,
@@ -84,12 +84,12 @@ class HomeCard extends StatelessWidget {
                           "Buy",
                           style: small.white.regularF,
                         ),
-                      )
+                      ),
                     ],
-                  )
+                  ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),

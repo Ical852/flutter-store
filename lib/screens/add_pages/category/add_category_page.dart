@@ -16,7 +16,7 @@ class AddCategoryPage extends StatefulWidget {
 
 class _AddCategoryPageState extends State<AddCategoryPage> {
   TextEditingController categoryNameController = TextEditingController(text: "");
-  late var addCategoryVM = AddCategoryViewModel(context);
+  late AddCategoryViewModel addCategoryVM = AddCategoryViewModel(context);
   bool isButtonDisabled = true;
 
   @override
@@ -38,18 +38,17 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
     });
   }
 
+  void createCategory() {
+    var categories = context.read<CategoryCubit>().state.categories;
+    var category = CategoryModel(
+      generateCategoryId(categories),
+      categoryNameController.text
+    );
+    addCategoryVM.createCategory(category);
+  }
+
   @override
   Widget build(BuildContext context) {
-    void createCategory() {
-      var categories = context.read<CategoryCubit>().state.categories;
-      var category = CategoryModel(
-        generateCategoryId(categories),
-        categoryNameController.text
-      );
-
-      addCategoryVM.createCategory(category);
-    }
-
     return Scaffold(
       backgroundColor: whiteColor,
       body: SafeArea(
@@ -82,17 +81,17 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
                                 createCategory();
                               });
                             },
-                            disabled: isButtonDisabled
+                            disabled: isButtonDisabled,
                           ),
-                          SizedBox(height: 120)
+                          SizedBox(height: 120),
                         ],
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
-          ]
+          ],
         ),
       ),
     );

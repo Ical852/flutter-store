@@ -12,7 +12,7 @@ class CategoryInputItem extends StatelessWidget {
   CategoryInputItem({
     required this.title,
     required this.onPress,
-    this.active = false
+    this.active = false,
   });
 
   @override
@@ -25,11 +25,9 @@ class CategoryInputItem extends StatelessWidget {
         color: active ? green7.withOpacity(0.3) : whiteColor,
         child: Row(
           children: [
-            CircleIndicator(
-              active: active,
-            ),
+            CircleIndicator(active: active),
             SizedBox(width: 12),
-            Text(title, style: medium.black.regularF)
+            Text(title, style: medium.black.regularF),
           ],
         ),
       ),

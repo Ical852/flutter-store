@@ -26,15 +26,13 @@ class CategoryItem extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           color: isCurrent ? green1 : whiteColor,
-          border: isCurrent ? null : Border.all(
-            color: green1
-          )
+          border: isCurrent ? null : Border.all(color: green1),
         ),
         child: Text(
           title,
           style: regular.copyWith(
             fontWeight: isCurrent ? fontMedium : fontLight,
-            color: isCurrent ? whiteColor : green1
+            color: isCurrent ? whiteColor : green1,
           ),
         ),
       ),

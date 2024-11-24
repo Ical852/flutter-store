@@ -33,27 +33,23 @@ class Paginations extends StatelessWidget {
         children: [
           ActMultiple(
             action: "latest",
-            onPress: noPages() ? (){} : onLatest
+            onPress: noPages() ? (){} : onLatest,
           ),
-          SizedBox(width: 8,),
+          SizedBox(width: 8),
           ActSingle(
             action: "prev", 
-            onPress: noPages() ? (){} :  onPrev
+            onPress: noPages() ? (){} :  onPrev,
           ),
           SizedBox(width: 8),
           Row(
             children: pages.map((page) {
               return Container(
-                margin: EdgeInsets.only(
-                  right: 8
-                ),
+                margin: EdgeInsets.only(right: 8),
                 child: PaginationItem(
                   page: page,
                   current: current,
                   onPress: () {
-                    if (page != "...") {
-                      onChangePage(page);
-                    }
+                    if (page != "...") onChangePage(page);
                   }
                 ),
               );
@@ -61,12 +57,12 @@ class Paginations extends StatelessWidget {
           ),
           ActSingle(
             action: "next", 
-            onPress: noPages() ? (){} :  onNext
+            onPress: noPages() ? (){} :  onNext,
           ),
           SizedBox(width: 8),
           ActMultiple(
             action: "end",
-            onPress: noPages() ? (){} :  onEnd
+            onPress: noPages() ? (){} :  onEnd,
           ),
         ],
       ),

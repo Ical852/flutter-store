@@ -91,9 +91,6 @@ class _AddProductPageState extends State<AddProductPage> {
 
   @override
   Widget build(BuildContext context) {
-    bool isPriceActive(price) {
-      return currentPrice == price;
-    }
     void setFastPrice(price, stateSetter) {
       this.productPriceController.text = price.toString();
       setState(() {
@@ -110,14 +107,11 @@ class _AddProductPageState extends State<AddProductPage> {
         341,
         PriceDrawer(
           setFastPrice: setFastPrice,
-          isPriceActive: isPriceActive,
-        )
+          isPriceActive: (price) => currentPrice == price,
+        ),
       );
     }
 
-    bool isCategoryActive(cat) {
-      return category == cat;
-    }
     void setCategory(cat, setState) {
       this.setState(() {
         category = cat;
@@ -134,8 +128,8 @@ class _AddProductPageState extends State<AddProductPage> {
         CategoryDrawer(
           state: state,
           setCategory: setCategory,
-          isCategoryActive: isCategoryActive,
-        )
+          isCategoryActive: (cat) => category == cat,
+        ),
       );
     }
 
@@ -154,14 +148,13 @@ class _AddProductPageState extends State<AddProductPage> {
         productDescController.text,
         imageUrlController.text,
       );
-
       addProductVM.createProduct(product);
     }
 
     Widget CategoryInputContent() {
       return CategoryInput(
         category: category,
-        showCategoryDrawer: showCategoryDrawer
+        showCategoryDrawer: showCategoryDrawer,
       );
     }
 
@@ -260,13 +253,13 @@ class _AddProductPageState extends State<AddProductPage> {
                               createProduct();
                             });
                           },
-                          disabled: isButtonDisabled
+                          disabled: isButtonDisabled,
                         ),
-                        SizedBox(height: 120)
+                        SizedBox(height: 120),
                       ],
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),
