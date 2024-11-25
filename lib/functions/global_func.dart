@@ -117,6 +117,15 @@ Future<File?> pickImage(ImageSource source) async {
   }
 }
 
+void navReplace(BuildContext context, Widget route) {
+  Navigator.of(context).pushAndRemoveUntil(
+    MaterialPageRoute(
+      builder: (context) => route,
+    ),
+    (route) => false,
+  );
+}
+
 BoxShadow getBoxShadow(double show) {
   return BoxShadow(
     color: blackColor.withOpacity(show / 10),

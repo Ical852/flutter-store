@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutterstore/functions/global_func.dart';
+import 'package:flutterstore/screens/search_pages/search_page.dart';
 import 'package:flutterstore/shared/constants.dart';
 import 'package:flutterstore/shared/text_styles.dart';
 import 'package:flutterstore/widgets/image_custom.dart';
 
 // ignore: must_be_immutable
 class HomeHeader extends StatelessWidget {
-  Function() onSeach;
-  HomeHeader({super.key, required this.onSeach});
+  Function() onSearch;
+  HomeHeader({super.key, required this.onSearch});
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +41,8 @@ class HomeHeader extends StatelessWidget {
     Widget RenderSearchBar() {
       return GestureDetector(
         onTap: () {
-          onSeach();
-          Navigator.pushNamed(context, "/search");
+          onSearch();
+          navReplace(context, SearchPage());
         },
         child: Container(
           height: 40,

@@ -4,6 +4,7 @@ import 'package:flutterstore/blocs/cubits/product_cubit.dart';
 import 'package:flutterstore/functions/global_func.dart';
 import 'package:flutterstore/models/product_bloc_model.dart';
 import 'package:flutterstore/screens/detail_pages/detail_page.dart';
+import 'package:flutterstore/screens/main_pages/main_page.dart';
 import 'package:flutterstore/screens/search_pages/search_input.dart';
 import 'package:flutterstore/widgets/empty_products.dart';
 import 'package:flutterstore/shared/constants.dart';
@@ -32,7 +33,7 @@ class _SearchPageState extends State<SearchPage> {
         searchController: searchController,
         onBack: () {
           searchVM.resetPagination();
-          Navigator.pop(context);
+          navReplace(context, MainPage());
         },
         onFieldSubmitted: (e) {
           setState(() {
@@ -177,7 +178,8 @@ class _SearchPageState extends State<SearchPage> {
       body: WillPopScope(
         onWillPop: () async {
           searchVM.resetPagination();
-          return true;
+          navReplace(context, MainPage());
+          return false;
         },
         child: SafeArea(
           child: Column(

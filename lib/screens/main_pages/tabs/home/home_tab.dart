@@ -152,7 +152,7 @@ class _HomeTabState extends State<HomeTab> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             HomeHeader(
-              onSeach: () => setState(() {
+              onSearch: () => setState(() {
                 homeVM.resetPagination();
               }),
             ),
