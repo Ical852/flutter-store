@@ -90,34 +90,25 @@ class _EditProductPageState extends State<EditProductPage> {
     super.dispose();
   }
 
-  void _validateInput() {
-    setState(() {
-      isButtonDisabled = 
-        productNameController.text.isEmpty ||
-        productDescController.text.isEmpty ||
-        productPriceController.text.isEmpty ||
-        imageUrlController.text.isEmpty ||
-        skuController.text.isEmpty ||
-        weightController.text.isEmpty ||
-        heightController.text.isEmpty ||
-        widthController.text.isEmpty ||
-        lengthController.text.isEmpty;
-    });
-  }
+  void _validateInput() => setState(() {
+    isButtonDisabled = 
+      productNameController.text.isEmpty ||
+      productDescController.text.isEmpty ||
+      productPriceController.text.isEmpty ||
+      imageUrlController.text.isEmpty ||
+      skuController.text.isEmpty ||
+      weightController.text.isEmpty ||
+      heightController.text.isEmpty ||
+      widthController.text.isEmpty ||
+      lengthController.text.isEmpty;
+  });
 
   @override
   Widget build(BuildContext context) {
-    bool isPriceActive(price) {
-      return currentPrice == price;
-    }
     void setFastPrice(price, stateSetter) {
-      this.productPriceController.text = price.toString();
-      setState(() {
-        currentPrice = price;
-      });
-      stateSetter(() {
-        currentPrice = price;
-      });
+      productPriceController.text = price.toString();
+      setState(() => currentPrice = price);
+      stateSetter(() => currentPrice = price);
       Navigator.pop(context);
     }
     void showPriceDrawer() {
@@ -126,22 +117,15 @@ class _EditProductPageState extends State<EditProductPage> {
         341,
         PriceDrawer(
           setFastPrice: setFastPrice,
-          isPriceActive: isPriceActive,
-        )
+          isPriceActive: (price) => currentPrice == price,
+        ),
       );
     }
 
-    bool isCategoryActive(cat) {
-      return category == cat;
-    }
-    void setCategory(cat, setState) {
+    void setCategory(cat, stateSetter) {
       _validateInput();
-      this.setState(() {
-        category = cat;
-      });
-      setState(() {
-        category = cat;
-      });
+      setState(() => category = cat);
+      stateSetter(() => category = cat);
       Navigator.pop(context);
     }
     void showCategoryDrawer(state) {
@@ -151,8 +135,8 @@ class _EditProductPageState extends State<EditProductPage> {
         CategoryDrawer(
           state: state,
           setCategory: setCategory,
-          isCategoryActive: isCategoryActive,
-        )
+          isCategoryActive: (cat) => category == cat,
+        ),
       );
     }
 
@@ -170,14 +154,13 @@ class _EditProductPageState extends State<EditProductPage> {
         productDescController.text,
         imageUrlController.text,
       );
-
       editProductVM.updateProduct(product);
     }
 
     Widget CategoryInputContent() {
       return CategoryInput(
         category: category,
-        showCategoryDrawer: showCategoryDrawer
+        showCategoryDrawer: showCategoryDrawer,
       );
     }
 
@@ -185,13 +168,9 @@ class _EditProductPageState extends State<EditProductPage> {
       return PriceInput(
         productPriceController: productPriceController,
         showPriceDrawer: showPriceDrawer,
-        onChanged: (value) {
-          this.setState(() {
-            if (value.isNotEmpty) {
-              currentPrice = int.parse(value);
-            }
-          });
-        },
+        onChanged: (value) => setState(() {
+          if (value.isNotEmpty) currentPrice = int.parse(value);
+        }),
       );
     }
 
@@ -204,10 +183,7 @@ class _EditProductPageState extends State<EditProductPage> {
               children: [
                 Expanded(
                   child: Container(
-                    margin: EdgeInsets.only(
-                      left: 24,
-                      right: 24,
-                    ),
+                    margin: EdgeInsets.only(left: 24, right: 24),
                     child: ListView(
                       children: [
                         SizedBox(height: 30),
@@ -271,18 +247,14 @@ class _EditProductPageState extends State<EditProductPage> {
                         SizedBox(height: 32),
                         MainButtonCustom(
                           title: 'Update Product',
-                          onPressed: () {
-                            setState(() {
-                              updateProduct();
-                            });
-                          },
+                          onPressed: () => setState(() => updateProduct()),
                           disabled: isButtonDisabled
                         ),
-                        SizedBox(height: 120)
+                        SizedBox(height: 120),
                       ],
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),

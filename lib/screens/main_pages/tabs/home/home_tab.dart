@@ -33,12 +33,8 @@ class _HomeTabState extends State<HomeTab> {
   Widget build(BuildContext context) {
     Widget CategoryContent() {
       return CategoryList(
-        onAllProducts: () => setState(() {
-          homeVM.setCategory(getDefaultCategory());
-        }),
-        onChoose: (category) => setState(() {
-          homeVM.setCategory(category);
-        }),
+        onAllProducts: () => setState(() => homeVM.setCategory(getDefaultCategory())),
+        onChoose: (category) => setState(() => homeVM.setCategory(category)),
       );
     }
 
@@ -46,16 +42,13 @@ class _HomeTabState extends State<HomeTab> {
       return Container(
         child: LimitDrawer(
           currentLimit: state.pagination.limit,
-          onPress: (limit) => setState(() {
-            homeVM.setLimit(limit);
-          }),
+          onPress: (limit) => setState(() => homeVM.setLimit(limit)),
         ),
       );
     }
 
     Widget LimitContent() {
-      return BlocConsumer<ProductCubit, ProductBlocModel>(
-        listener: (context, state) {},
+      return BlocBuilder<ProductCubit, ProductBlocModel>(
         builder: (context, state) {
           return Container(
             margin: EdgeInsets.symmetric(horizontal: 24),
@@ -64,9 +57,7 @@ class _HomeTabState extends State<HomeTab> {
               desc: "All products from klontong store",
               limit: state.pagination.limit.toString(),
               isEmpty: state.resultProduct.products.length < 1,
-              onPress: () {
-                showDrawer(context, 357, LimitDrawerContent(state));
-              },
+              onPress: () => showDrawer(context, 357, LimitDrawerContent(state)),
             ),
           );
         },
@@ -77,41 +68,24 @@ class _HomeTabState extends State<HomeTab> {
       return Paginations(
         pages: state.resultProduct.pages,
         current: state.pagination.page,
-        onLatest: () {
-          setState(() {
-            homeVM.setPage(1);
-          });
-        },
+        onLatest: () => setState(() => homeVM.setPage(1)),
         onPrev: () {
           if (state.pagination.page != 1) {
-            setState(() {
-              homeVM.setPage(state.pagination.page - 1);
-            });
+            setState(() => homeVM.setPage(state.pagination.page - 1));
           }
         },
-        onChangePage: (page) {
-          setState(() {
-            homeVM.setPage(page);
-          });
-        },
+        onChangePage: (page) => setState(() => homeVM.setPage(page)),
         onNext: () {
           if (state.pagination.page != state.pagination.lastPage) {
-            setState(() {
-              homeVM.setPage(state.pagination.page + 1);
-            });
+            setState(() => homeVM.setPage(state.pagination.page + 1));
           }
         },
-        onEnd: () {
-          setState(() {
-            homeVM.setPage(state.pagination.lastPage);
-          });
-        },
+        onEnd: () => setState(() => homeVM.setPage(state.pagination.lastPage)),
       );
     }
 
     Widget MainContent() {
-      return BlocConsumer<ProductCubit, ProductBlocModel>(
-        listener: (context, state) {},
+      return BlocBuilder<ProductCubit, ProductBlocModel>(
         builder: (context, state) {
           if (state.resultProduct.products.length < 1) return EmptyProducts();
           return Container(
@@ -127,14 +101,7 @@ class _HomeTabState extends State<HomeTab> {
                     var product = state.resultProduct.products[index].product;
                     return HomeCard(
                       product: product,
-                      onPress: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => DetailPage(product)
-                          )
-                        );
-                      },
+                      onPress: () => goToPage(context, DetailPage(product)),
                     );
                   },
                 ),
@@ -152,18 +119,16 @@ class _HomeTabState extends State<HomeTab> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             HomeHeader(
-              onSearch: () => setState(() {
-                homeVM.resetPagination();
-              }),
+              onSearch: () => setState(() => homeVM.resetPagination()),
             ),
             SizedBox(height: 16),
             CategoryContent(),
             SizedBox(height: 16),
             LimitContent(),
             SizedBox(height: 20),
-            MainContent()
+            MainContent(),
           ],
-        )
+        ),
       ),
     );
   }

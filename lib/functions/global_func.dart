@@ -49,7 +49,7 @@ String generateCategoryId(List<CategoryModel> categories) {
   var generated = uuid.v1();
   CategoryModel find = categories.firstWhere(
     (category) => category.id == generated,
-    orElse: () => CategoryModel.init()
+    orElse: () => CategoryModel.init(),
   );
 
   if (find.id.isEmpty) {
@@ -63,7 +63,7 @@ String generateProductId(List<ProductModel> products) {
   var generated = uuid.v1();
   ProductModel find = products.firstWhere(
     (product) => product.id == generated,
-    orElse: () => ProductModel.init()
+    orElse: () => ProductModel.init(),
   );
 
   if (find.id.isEmpty) {
@@ -117,6 +117,18 @@ Future<File?> pickImage(ImageSource source) async {
   }
 }
 
+void goToPage(BuildContext context, Widget route) {
+  Navigator.of(context).push(
+    MaterialPageRoute(
+      builder: (context) => route,
+    ),
+  );
+}
+
+void goToPageStr(BuildContext context, String route) {
+  Navigator.pushNamed(context, route);
+}
+
 void navReplace(BuildContext context, Widget route) {
   Navigator.of(context).pushAndRemoveUntil(
     MaterialPageRoute(
@@ -126,11 +138,19 @@ void navReplace(BuildContext context, Widget route) {
   );
 }
 
+void navReplaceStr(BuildContext context, String route) {
+  Navigator.pushNamedAndRemoveUntil(
+    context,
+    route,
+    (route) => false,
+  );
+}
+
 BoxShadow getBoxShadow(double show) {
   return BoxShadow(
     color: blackColor.withOpacity(show / 10),
     blurRadius: show,
-    offset: Offset(0, show)
+    offset: Offset(0, show),
   );
 }
 
@@ -145,8 +165,8 @@ void showGLobalAlert(type, text, context) {
     backgroundColor: getColorType(type),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(
-        top: Radius.circular(8)
-      )
+        top: Radius.circular(8),
+      ),
     ),
   ));
 }
@@ -157,8 +177,8 @@ void showDrawer(BuildContext context, double height, Widget content) {
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.only(
         topLeft: Radius.circular(32),
-        topRight: Radius.circular(32)
-      )
+        topRight: Radius.circular(32),
+      ),
     ),
     builder: (BuildContext context) {
       return Container(
@@ -167,8 +187,8 @@ void showDrawer(BuildContext context, double height, Widget content) {
           color: whiteColor,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(32), 
-            topRight: Radius.circular(32)
-          )
+            topRight: Radius.circular(32),
+          ),
         ),
         child: content,
       );
@@ -193,21 +213,12 @@ void showConfirm(BuildContext context, String confirm, Function onYes, onCancel)
           ),
           TextButton(
             child: Text('Yes'),
-            onPressed: () {
-              onYes();
-            },
+            onPressed: () => onYes(),
           ),
         ],
       );
     },
-  ).then((value) {
-    if (value != null && value) {
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text('Cancelled!'),
-      ));
-    }
-  });
+  );
 }
 
 CategoryBlocModel generateCategory() {
@@ -242,8 +253,8 @@ List<ProductModel> generateProducts(List<ProductModel> uniques) {
   String generateRandomString(int length) {
     const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
     return List.generate(
-      length, (index) => chars[random.nextInt(chars.length)])
-      .join();
+      length, (index) => chars[random.nextInt(chars.length)]
+    ).join();
   }
 
   var categories = generateCategory().categories;

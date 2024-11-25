@@ -16,7 +16,7 @@ class PriceDrawer extends StatelessWidget {
   var prices = [
     [50000, 100000],
     [200000, 300000],
-    [500000, 1000000]
+    [500000, 1000000],
   ];
 
   @override
@@ -36,12 +36,8 @@ class PriceDrawer extends StatelessWidget {
                 return RowPriceItem(
                   leftPrice: price[0],
                   rightPrice: price[1],
-                  onLeft: () {
-                    setFastPrice(price[0], setState);
-                  },
-                  onRight: () {
-                    setFastPrice(price[1], setState);
-                  },
+                  onLeft: () => setFastPrice(price[0], setState),
+                  onRight: () => setFastPrice(price[1], setState),
                   leftActive: isPriceActive(price[0]),
                   rightActive: isPriceActive(price[1]),
                 );

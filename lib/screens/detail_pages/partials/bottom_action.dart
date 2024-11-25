@@ -11,7 +11,7 @@ class BottomAction extends StatelessWidget {
   ProductModel product;
   BottomAction({
     super.key,
-    required this.product
+    required this.product,
   });
 
   @override
@@ -23,7 +23,7 @@ class BottomAction extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 24),
         decoration: BoxDecoration(
           color: whiteColor,
-          boxShadow: [getBoxShadow(9)]
+          boxShadow: [getBoxShadow(9)],
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -36,15 +36,8 @@ class BottomAction extends StatelessWidget {
               width: 165,
               height: 40,
               title: "Edit Product",
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => EditProductPage(product)
-                  )
-                );
-              },
-            )
+              onPressed: () => goToPage(context, EditProductPage(product)),
+            ),
           ],
         ),
       ),

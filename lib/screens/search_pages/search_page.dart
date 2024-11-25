@@ -35,22 +35,14 @@ class _SearchPageState extends State<SearchPage> {
           searchVM.resetPagination();
           navReplace(context, MainPage());
         },
-        onFieldSubmitted: (e) {
-          setState(() {
-            searchVM.setFilter(e);
-          });
-        },
+        onFieldSubmitted: (e) => setState(() => searchVM.setFilter(e)),
       );
     }
 
     Widget CategoryContent() {
       return CategoryList(
-        onAllProducts: () => setState(() {
-          searchVM.setCategory(getDefaultCategory());
-        }),
-        onChoose: (category) => setState(() {
-          searchVM.setCategory(category);
-        }),
+        onAllProducts: () => setState(() => searchVM.setCategory(getDefaultCategory())),
+        onChoose: (category) => setState(() => searchVM.setCategory(category)),
       );
     }
 
@@ -58,35 +50,19 @@ class _SearchPageState extends State<SearchPage> {
       return Paginations(
         pages: state.resultProduct.pages,
         current: state.pagination.page,
-        onLatest: () {
-          setState(() {
-            searchVM.setPage(1);
-          });
-        },
+        onLatest: () => setState(() => searchVM.setPage(1)),
         onPrev: () {
           if (state.pagination.page != 1) {
-            setState(() {
-              searchVM.setPage(state.pagination.page - 1);
-            });
+            setState(() => searchVM.setPage(state.pagination.page - 1));
           }
         },
-        onChangePage: (page) {
-          setState(() {
-            searchVM.setPage(page);
-          });
-        },
+        onChangePage: (page) => setState(() => searchVM.setPage(page)),
         onNext: () {
           if (state.pagination.page != state.pagination.lastPage) {
-            setState(() {
-              searchVM.setPage(state.pagination.page + 1);
-            });
+            setState(() => searchVM.setPage(state.pagination.page + 1));
           }
         },
-        onEnd: () {
-          setState(() {
-            searchVM.setPage(state.pagination.lastPage);
-          });
-        },
+        onEnd: () => setState(() => searchVM.setPage(state.pagination.lastPage)),
       );
     }
 
@@ -94,16 +70,13 @@ class _SearchPageState extends State<SearchPage> {
       return Container(
         child: LimitDrawer(
           currentLimit: state.pagination.limit,
-          onPress: (limit) => setState(() {
-            searchVM.setLimit(limit);
-          }),
+          onPress: (limit) => setState(() => searchVM.setLimit(limit)),
         ),
       );
     }
 
     Widget LimitContent() {
-      return BlocConsumer<ProductCubit, ProductBlocModel>(
-        listener: (context, state) {},
+      return BlocBuilder<ProductCubit, ProductBlocModel>(
         builder: (context, state) {
           return Container(
             margin: EdgeInsets.symmetric(horizontal: 24),
@@ -112,9 +85,7 @@ class _SearchPageState extends State<SearchPage> {
               desc: "All products from klontong store",
               limit: state.pagination.limit.toString(),
               isEmpty: state.resultProduct.products.length < 1,
-              onPress: () {
-                showDrawer(context, 357, LimitDrawerContent(state));
-              },
+              onPress: () => showDrawer(context, 357, LimitDrawerContent(state)),
             ),
           );
         },
@@ -122,8 +93,7 @@ class _SearchPageState extends State<SearchPage> {
     }
 
     Widget MainContent() {
-      return BlocConsumer<ProductCubit, ProductBlocModel>(
-        listener: (context, state) {},
+      return BlocBuilder<ProductCubit, ProductBlocModel>(
         builder: (context, state) {
           if (state.resultProduct.products.length < 1) {
             return EmptyProducts(
@@ -137,10 +107,7 @@ class _SearchPageState extends State<SearchPage> {
                 RenderPagination(state),
                 SizedBox(height: 20),
                 GridView.builder(
-                  padding: EdgeInsets.only(
-                    left: 24,
-                    right: 24
-                  ),
+                  padding: EdgeInsets.only(left: 24, right: 24),
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -154,14 +121,7 @@ class _SearchPageState extends State<SearchPage> {
                     var product = state.resultProduct.products[index].product;
                     return GridCard(
                       product: product,
-                      onPress: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => DetailPage(product)
-                          )
-                        );
-                      },
+                      onPress: () => goToPage(context, DetailPage(product)),
                     );
                   },
                 ),
@@ -188,15 +148,15 @@ class _SearchPageState extends State<SearchPage> {
               Expanded(
                 child: ListView(
                   children: [
-                    SizedBox(height: 16,),
+                    SizedBox(height: 16),
                     CategoryContent(),
-                    SizedBox(height: 16,),
+                    SizedBox(height: 16),
                     LimitContent(),
-                    SizedBox(height: 20,),
+                    SizedBox(height: 20),
                     MainContent(),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),

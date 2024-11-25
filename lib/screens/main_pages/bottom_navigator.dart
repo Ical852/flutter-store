@@ -29,8 +29,8 @@ class BottomNavigator extends StatelessWidget {
             gradient: LinearGradient(
               colors: [green2, green1],
               begin: Alignment.topCenter,
-              end: Alignment.bottomCenter
-            )
+              end: Alignment.bottomCenter,
+            ),
           ),
           width: 80,
           height: 80,
@@ -39,8 +39,8 @@ class BottomNavigator extends StatelessWidget {
               backgroundColor: Colors.transparent,
               shadowColor: Colors.transparent.withOpacity(0.1),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(50)
-              )
+                borderRadius: BorderRadius.circular(50),
+              ),
             ),
             onPressed: onUp,
             child: Column(
@@ -72,9 +72,9 @@ class BottomNavigator extends StatelessWidget {
               BoxShadow(
                 color: blackColor.withOpacity(0.9),
                 blurRadius: 9,
-                offset: Offset(0, 9)
-              )
-            ]
+                offset: Offset(0, 9),
+              ),
+            ],
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

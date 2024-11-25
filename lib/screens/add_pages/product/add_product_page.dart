@@ -74,31 +74,25 @@ class _AddProductPageState extends State<AddProductPage> {
     super.dispose();
   }
 
-  void _validateInput() {
-    setState(() {
-      isButtonDisabled = 
-        productNameController.text.isEmpty ||
-        productDescController.text.isEmpty ||
-        productPriceController.text.isEmpty ||
-        imageUrlController.text.isEmpty ||
-        skuController.text.isEmpty ||
-        weightController.text.isEmpty ||
-        heightController.text.isEmpty ||
-        widthController.text.isEmpty ||
-        lengthController.text.isEmpty;
-    });
-  }
+  void _validateInput() => setState(() {
+    isButtonDisabled = 
+      productNameController.text.isEmpty ||
+      productDescController.text.isEmpty ||
+      productPriceController.text.isEmpty ||
+      imageUrlController.text.isEmpty ||
+      skuController.text.isEmpty ||
+      weightController.text.isEmpty ||
+      heightController.text.isEmpty ||
+      widthController.text.isEmpty ||
+      lengthController.text.isEmpty;
+  });
 
   @override
   Widget build(BuildContext context) {
     void setFastPrice(price, stateSetter) {
       this.productPriceController.text = price.toString();
-      setState(() {
-        currentPrice = price;
-      });
-      stateSetter(() {
-        currentPrice = price;
-      });
+      setState(() => currentPrice = price);
+      stateSetter(() => currentPrice = price);
       Navigator.pop(context);
     }
     void showPriceDrawer() {
@@ -112,13 +106,9 @@ class _AddProductPageState extends State<AddProductPage> {
       );
     }
 
-    void setCategory(cat, setState) {
-      this.setState(() {
-        category = cat;
-      });
-      setState(() {
-        category = cat;
-      });
+    void setCategory(cat, stateSetter) {
+      setState(() => category = cat);
+      stateSetter(() => category = cat);
       Navigator.pop(context);
     }
     void showCategoryDrawer(state) {
@@ -162,13 +152,9 @@ class _AddProductPageState extends State<AddProductPage> {
       return PriceInput(
         productPriceController: productPriceController,
         showPriceDrawer: showPriceDrawer,
-        onChanged: (value) {
-          this.setState(() {
-            if (value.isNotEmpty) {
-              currentPrice = int.parse(value);
-            }
-          });
-        },
+        onChanged: (value) => setState(() {
+          if (value.isNotEmpty) currentPrice = int.parse(value);
+        }),
       );
     }
 
@@ -181,10 +167,7 @@ class _AddProductPageState extends State<AddProductPage> {
               children: [
                 Expanded(
                   child: Container(
-                    margin: EdgeInsets.only(
-                      left: 24,
-                      right: 24,
-                    ),
+                    margin: EdgeInsets.only(left: 24, right: 24),
                     child: ListView(
                       children: [
                         SizedBox(height: 30),
@@ -248,11 +231,7 @@ class _AddProductPageState extends State<AddProductPage> {
                         SizedBox(height: 32),
                         MainButtonCustom(
                           title: 'Create Product',
-                          onPressed: () {
-                            setState(() {
-                              createProduct();
-                            });
-                          },
+                          onPressed: () => setState(() => createProduct()),
                           disabled: isButtonDisabled,
                         ),
                         SizedBox(height: 120),

@@ -32,11 +32,7 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
     super.dispose();
   }
 
-  void _validateInput() {
-    setState(() {
-      isButtonDisabled = categoryNameController.text.isEmpty;
-    });
-  }
+  void _validateInput() => setState(() => isButtonDisabled = categoryNameController.text.isEmpty);
 
   void createCategory() {
     var categories = context.read<CategoryCubit>().state.categories;
@@ -59,10 +55,7 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
                 children: [
                   Expanded(
                     child: Container(
-                      margin: EdgeInsets.only(
-                        left: 24,
-                        right: 24,
-                      ),
+                      margin: EdgeInsets.only(left: 24, right: 24),
                       child: ListView(
                         children: [
                           SizedBox(height: 30),
@@ -76,11 +69,7 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
                           SizedBox(height: 20),
                           MainButtonCustom(
                             title: 'Create Category',
-                            onPressed: () {
-                              setState(() {
-                                createCategory();
-                              });
-                            },
+                            onPressed: () => setState(() => createCategory()),
                             disabled: isButtonDisabled,
                           ),
                           SizedBox(height: 120),

@@ -21,8 +21,7 @@ class CategoryList extends StatelessWidget {
     return Container(
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
-        child: BlocConsumer<CategoryCubit, CategoryBlocModel>(
-          listener: (context, state) {},
+        child: BlocBuilder<CategoryCubit, CategoryBlocModel>(
           builder: (context, state) {
             return Row(
               mainAxisAlignment: MainAxisAlignment.start,

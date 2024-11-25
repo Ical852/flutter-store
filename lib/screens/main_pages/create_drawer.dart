@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterstore/functions/global_func.dart';
 import 'package:flutterstore/widgets/buttons/main_button_custom.dart';
 import 'package:flutterstore/widgets/drawer_title_desc.dart';
 
@@ -20,7 +21,7 @@ class CreateDrawer extends StatelessWidget {
             title: "Create Category",
             onPressed: () {
               Navigator.pop(context);
-              Navigator.pushNamed(context, "/add-category");
+              goToPageStr(context, "/add-category");
             },
           ),
           SizedBox(height: 16),
@@ -28,7 +29,7 @@ class CreateDrawer extends StatelessWidget {
             title: "Create Product",
             onPressed: () {
               Navigator.pop(context);
-              Navigator.pushNamed(context, "/add-product");
+              goToPageStr(context, "/add-product");
             },
           ),
         ],

@@ -17,9 +17,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 2), () {
-      Navigator.pushNamedAndRemoveUntil(context, "/main", (route) => false);
-    });
+    Timer(Duration(seconds: 2), () => navReplaceStr(context, "/main"));
   }
 
   @override
@@ -41,7 +39,7 @@ class _SplashPageState extends State<SplashPage> {
                 Text(
                   "Klontong",
                   style: mass.white.semiBold,
-                )
+                ),
               ],
             ),
           ),

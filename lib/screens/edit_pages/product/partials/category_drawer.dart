@@ -17,7 +17,7 @@ class CategoryDrawer extends StatelessWidget {
     super.key,
     required this.state,
     required this.setCategory,
-    required this.isCategoryActive
+    required this.isCategoryActive,
   });
 
   @override
@@ -40,10 +40,8 @@ class CategoryDrawer extends StatelessWidget {
             ),
             MiniButtonCustom(
               title: "Create Category",
-              onPressed: () {
-                Navigator.pushNamedAndRemoveUntil(context, "/add-category", (route) => false);
-              }
-            )
+              onPressed: () => navReplaceStr(context, "/add-category"),
+            ),
           ],
         );
       }
@@ -63,13 +61,11 @@ class CategoryDrawer extends StatelessWidget {
               children: state.categories.map((cat) {
                 return CategoryInputItem(
                   title: cat.name,
-                  onPress: () {
-                    setCategory(cat, setState);
-                  },
+                  onPress: () => setCategory(cat, setState),
                   active: isCategoryActive(cat),
                 );
               }).toList(),
-            )
+            ),
           ],
         ),
       );

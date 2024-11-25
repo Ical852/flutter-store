@@ -26,10 +26,6 @@ class _DetailPageState extends State<DetailPage> {
   Widget build(BuildContext context) {
     var product = this.widget.product;
 
-    Widget BottomActionContent() {
-      return BottomAction(product: product);
-    }
-
     Widget MainContent(context) {
       return Container(
         margin: EdgeInsets.only(left: 24, right: 24, top: 81),
@@ -58,7 +54,7 @@ class _DetailPageState extends State<DetailPage> {
                           overflow: TextOverflow.ellipsis,
                         ),
                         SizedBox(height: 3),
-                        BadgeCustom(title: product.category.name)
+                        BadgeCustom(title: product.category.name),
                       ],
                     ),
                   ),
@@ -67,40 +63,38 @@ class _DetailPageState extends State<DetailPage> {
                     showConfirm(
                       context,
                       "Are you sure wnat to delete this product?",
-                      (){
-                        detailVM.deleteProduct(product.id, context);
-                      },
+                      () => detailVM.deleteProduct(product.id, context),
                       (){}
                     );
-                  })
+                  }),
                 ],
               ),
-              SizedBox(height: 24,),
+              SizedBox(height: 24),
               Text(
                 "Description",
                 style: regular.black1S.mediumF,
               ),
-              SizedBox(height: 8,),
+              SizedBox(height: 8),
               Text(
                 product.desc,
                 style: regular.grey1S.light,
               ),
-              SizedBox(height: 20,),
+              SizedBox(height: 20),
               Text(
                 "Width | Height | Length | Weight",
                 style: regular.black1S.mediumF,
               ),
-              SizedBox(height: 8,),
+              SizedBox(height: 8),
               Text(
                 "${product.width.toString()}cm | ${product.height.toString()}cm | ${product.length.toString()}cm | ${product.weight.toString()}kg",
                 style: regular.grey1S.light,
               ),
-              SizedBox(height: 20,),
+              SizedBox(height: 20),
               Text(
                 "Sku",
                 style: regular.black1S.mediumF,
               ),
-              SizedBox(height: 8,),
+              SizedBox(height: 8),
               Text(
                 "${product.sku}",
                 style: regular.grey1S.light,
@@ -119,14 +113,11 @@ class _DetailPageState extends State<DetailPage> {
           child: Stack(
             children: [
               Container(
-                margin: EdgeInsets.symmetric(
-                  horizontal: 24,
-                  vertical: 32
-                ),
-                child: Header(title: "Product Detail")
+                margin: EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+                child: Header(title: "Product Detail"),
               ),
               MainContent(context),
-              BottomActionContent(),
+              BottomAction(product: product),
             ],
           ),
         ),

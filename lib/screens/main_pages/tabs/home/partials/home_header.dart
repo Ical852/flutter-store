@@ -26,14 +26,14 @@ class HomeHeader extends StatelessWidget {
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
               color: whiteColor,
-              borderRadius: BorderRadius.circular(50)
+              borderRadius: BorderRadius.circular(50),
             ),
             child: ImageCustom(
               height: 50,
               width: 50,
               image: AssetImage(getIM("im_user.png")),
             ),
-          )
+          ),
         ],
       );
     }
@@ -63,7 +63,7 @@ class HomeHeader extends StatelessWidget {
                 Text(
                   "Search your products here...",
                   style: regular.regularF.copyWith(color: black1.withOpacity(0.4)),
-                )
+                ),
               ],
             ),
           ),
@@ -78,8 +78,8 @@ class HomeHeader extends StatelessWidget {
         color: green1,
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(12),
-          bottomRight: Radius.circular(12)
-        )
+          bottomRight: Radius.circular(12),
+        ),
       ),
       child: Container(
         padding: EdgeInsets.all(24),

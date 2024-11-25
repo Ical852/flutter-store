@@ -15,13 +15,12 @@ class CategoryInput extends StatelessWidget {
   CategoryInput({
     super.key,
     required this.category,
-    required this.showCategoryDrawer
+    required this.showCategoryDrawer,
   });
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<CategoryCubit, CategoryBlocModel>(
-      listener: (context, state) {},
+    return BlocBuilder<CategoryCubit, CategoryBlocModel>(
       builder: (context, state) {
         return Container(
           child: Column(
@@ -29,7 +28,7 @@ class CategoryInput extends StatelessWidget {
             children: [
               Text(
                 'Product Category',
-                style: regular.black.regularF
+                style: regular.black.regularF,
               ),
               GestureDetector(
                 onTap: () => showCategoryDrawer(state),
@@ -39,24 +38,24 @@ class CategoryInput extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   decoration: BoxDecoration(
                     border: Border.all(color: green3),
-                    borderRadius: BorderRadius.circular(8)
+                    borderRadius: BorderRadius.circular(8),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
                         category.name,
-                        style: medium.black.regularF
+                        style: medium.black.regularF,
                       ),
                       ImageCustom(
                         height: 8,
                         width: 16,
                         image: AssetImage('assets/icons/ic_down.png'),
-                      )
+                      ),
                     ],
                   ),
                 ),
-              )
+              ),
             ],
           ),
         );

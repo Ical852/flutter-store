@@ -25,11 +25,7 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
     super.didChangeMetrics();
     final bottomInset = WidgetsBinding.instance.window.viewInsets.bottom;
     final newValue = bottomInset > 0.0;
-    if (newValue != keyboardVisible) {
-      setState(() {
-        keyboardVisible = newValue;
-      });
-    }
+    if (newValue != keyboardVisible) setState(() => keyboardVisible = newValue);
   }
 
   @override
@@ -57,11 +53,7 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
         alignment: Alignment.bottomCenter,
         child: BottomNavigator(
           currentPage: state,
-          onPress: (set) {
-            setState(() {
-              mainVm.setNewPage(set);
-            });
-          },
+          onPress: (set) => setState(() => mainVm.setNewPage(set)),
           onUp: () => showDrawer(context, 270, CreateDrawer()),
         ),
       );
@@ -69,15 +61,14 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
 
     return Scaffold(
       body: SafeArea(
-        child: BlocConsumer<PageCubit, String>(
-          listener: (context, state) {},
+        child: BlocBuilder<PageCubit, String>(
           builder: (context, state) {
             return Container(
               color: whiteColor,
               child: Stack(
                 children: [
                   ContentRender(state), 
-                  BottomNavRender(state)
+                  BottomNavRender(state),
                 ],
               ),
             );

@@ -13,7 +13,7 @@ class PriceInput extends StatelessWidget {
     super.key,
     required this.productPriceController,
     required this.onChanged,
-    required this.showPriceDrawer
+    required this.showPriceDrawer,
   });
 
   @override

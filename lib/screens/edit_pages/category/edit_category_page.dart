@@ -34,20 +34,15 @@ class _EditCategoryPageState extends State<EditCategoryPage> {
     super.dispose();
   }
 
-  void _validateInput() {
-    setState(() {
-      isButtonDisabled = categoryNameController.text.isEmpty;
-    });
-  }
+  void _validateInput() => setState(() => isButtonDisabled = categoryNameController.text.isEmpty);
 
   @override
   Widget build(BuildContext context) {
     void updateCategory() {
       var category = CategoryModel(
         this.widget.category.id,
-        categoryNameController.text
+        categoryNameController.text,
       );
-
       editCategoryVM.updateCategory(category);
     }
 
@@ -61,10 +56,7 @@ class _EditCategoryPageState extends State<EditCategoryPage> {
                 children: [
                   Expanded(
                     child: Container(
-                      margin: EdgeInsets.only(
-                        left: 24,
-                        right: 24,
-                      ),
+                      margin: EdgeInsets.only(left: 24, right: 24),
                       child: ListView(
                         children: [
                           SizedBox(height: 30),
@@ -78,22 +70,18 @@ class _EditCategoryPageState extends State<EditCategoryPage> {
                           SizedBox(height: 20),
                           MainButtonCustom(
                             title: 'Update Category',
-                            onPressed: () {
-                              setState(() {
-                                updateCategory();
-                              });
-                            },
-                            disabled: isButtonDisabled
+                            onPressed: () => setState(() => updateCategory()),
+                            disabled: isButtonDisabled,
                           ),
-                          SizedBox(height: 120)
+                          SizedBox(height: 120),
                         ],
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
-          ]
+          ],
         ),
       ),
     );

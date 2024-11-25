@@ -29,18 +29,14 @@ class _CategoryTabState extends State<CategoryTab> {
     searchController.addListener(onSearchChanged);
   }
 
-  void onSearchChanged() {
-    setState(() {
-      categoryVM.filterCategory(searchController.text);
-    });
-  }
+  void onSearchChanged() => setState(() => categoryVM.filterCategory(searchController.text));
 
   @override
   Widget build(BuildContext context) {
     Widget RenderEmpty() {
       return Container(
         margin: EdgeInsets.only(top: 128, bottom: 128),
-        child: EmptyCategory()
+        child: EmptyCategory(),
       );
     }
 
@@ -50,7 +46,7 @@ class _CategoryTabState extends State<CategoryTab> {
         decoration: BoxDecoration(
           color: whiteColor,
           boxShadow: [getBoxShadow(1.5)],
-          borderRadius: BorderRadius.circular(8)
+          borderRadius: BorderRadius.circular(8),
         ),
         margin: EdgeInsets.symmetric(horizontal: 24),
         child: Stack(
@@ -62,7 +58,7 @@ class _CategoryTabState extends State<CategoryTab> {
                 border: InputBorder.none,
                 contentPadding: EdgeInsets.symmetric(horizontal: 14),
                 labelStyle: regular.regularF.copyWith(
-                  color: black1.withOpacity(0.4)
+                  color: black1.withOpacity(0.4),
                 ),
               ),
             ),
@@ -76,7 +72,7 @@ class _CategoryTabState extends State<CategoryTab> {
                   image: AssetImage(getIC("ic_search.png")),
                 ),
               ),
-            )
+            ),
           ],
         ),
       );
@@ -92,7 +88,7 @@ class _CategoryTabState extends State<CategoryTab> {
           title: "All Categories",
           desc: "All product categories from klontong store",
           limit: "",
-          onPress: () {}
+          onPress: () {},
         ),
       );
     }
@@ -110,9 +106,7 @@ class _CategoryTabState extends State<CategoryTab> {
             category: category,
             onDelete: (category) {
               showConfirm(context, confirm, () {
-                setState(() {
-                  categoryVM.deleteCategory(category);
-                });
+                setState(() => categoryVM.deleteCategory(category));
                 Navigator.of(context).pop(false);
               }, () {});
             },
@@ -122,8 +116,7 @@ class _CategoryTabState extends State<CategoryTab> {
     }
 
     Widget MainContent() {
-      return BlocConsumer<CategoryCubit, CategoryBlocModel>(
-        listener: (context, state) {},
+      return BlocBuilder<CategoryCubit, CategoryBlocModel>(
         builder: (context, state) {
           if (state.categories.isEmpty) return RenderEmpty();
           return Container(

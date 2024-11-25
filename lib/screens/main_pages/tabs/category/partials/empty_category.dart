@@ -34,7 +34,7 @@ class EmptyCategory extends StatelessWidget {
           SizedBox(height: 24),
           MiniButtonCustom(
             title: "Create Category",
-            onPressed: () => Navigator.pushNamed(context, "/add-category"),
+            onPressed: () => goToPageStr(context, "/add-category"),
           ),
         ],
       ),
